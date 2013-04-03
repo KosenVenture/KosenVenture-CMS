@@ -2,4 +2,5 @@ normal_input:
   id: 1
   name: "mike"
   real_name: "mike david"
+  password_digest: "digest_hogehoge"
 
