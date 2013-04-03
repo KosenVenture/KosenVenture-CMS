@@ -1,0 +1,6 @@
+normal_input:
+  id: 1
+  name: "about"
+  published: true
+  category_id: 1
+  author_id: 1
