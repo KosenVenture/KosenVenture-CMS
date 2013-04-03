@@ -1,6 +1,8 @@
 KvpCms::Application.routes.draw do
-  namespace :admin do
+
+  scope 'admin', module: :admin do
     resources :pages
+    resources :page_categories
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
