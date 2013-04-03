@@ -11,12 +11,13 @@ class Page < ActiveRecord::Base
 
   # Validation
   # 必須項目
-  validates :name, :published, :author_id,
+  validates :published, :author_id,
     presence: true
 
-  # 一意な項目
   validates :name,
-    uniqueness: true
+    presence: true,
+    uniqueness: true,
+    format: { with: /[a-zA-Z0-9_\-]+/ }
 
   # 関連先の存在チェック
   validate :author_exists?

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Page do
@@ -49,6 +51,15 @@ describe Page do
       it "returns nil" do
         subject.category.should be_nil
       end
+    end
+  end
+
+  # 日本語名の場合
+  context "with Japanese name input" do
+    let(:params) { { name: 'ほげ', published: true, category_id: 1, author_id: 1 } }
+
+    it "is not valid" do
+      subject.valid?.should be_false
     end
   end
 end

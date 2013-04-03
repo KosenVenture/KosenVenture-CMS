@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe PageCategory do
@@ -22,6 +24,15 @@ describe PageCategory do
   # 全空欄入力時
   context "with nil input" do
     let(:params) { nil }
+
+    it "is not valid" do
+      subject.valid?.should be_false
+    end
+  end
+
+  # 日本語名の場合
+  context "with Japanese name input" do
+    let(:params) { { name: 'ほげ' } }
 
     it "is not valid" do
       subject.valid?.should be_false

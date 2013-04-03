@@ -9,5 +9,6 @@ class PageCategory < ActiveRecord::Base
   # Validation
   validates :name,
     presence: true,
-    uniqueness: true
+    uniqueness: true,
+    format: { with: /[a-zA-Z0-9_\-]+/ }
 end
