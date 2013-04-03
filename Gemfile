@@ -1,0 +1,28 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.0.0.beta1'
+
+gem 'jquery-rails'
+gem 'jbuilder', '~> 1.0.1'
+
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+
+  gem 'twitter-bootstrap-rails'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails'
+end
+
+group :assets do
+  gem 'sass-rails',   '~> 4.0.0.beta1'
+  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'therubyracer', platforms: :ruby
+  gem 'uglifier', '>= 1.0.3'
+end
+
