@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   # Relation ship
   belongs_to :author,
     class_name: 'User',
-    foreign_key: :user_id
+    foreign_key: :author_id
   belongs_to :category,
     class_name: 'PageCategory',
     foreign_key: :category_id
