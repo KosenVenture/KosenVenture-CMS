@@ -1,18 +1,13 @@
 # encoding: utf-8
 
 class Admin::PagesController < ApplicationController
-  layout 'admin'
+  layout 'admin/pages'
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages
   # GET /pages.json
   def index
     @pages = Page.all
-  end
-
-  # GET /pages/1
-  # GET /pages/1.json
-  def show
   end
 
   # GET /pages/new

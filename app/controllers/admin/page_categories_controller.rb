@@ -1,5 +1,5 @@
 class Admin::PageCategoriesController < ApplicationController
-  layout 'admin'
+  layout 'admin/pages'
   before_action :set_page_category, only: [:show, :edit, :update, :destroy]
 
   # GET /page_categories
