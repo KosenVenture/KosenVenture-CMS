@@ -5,6 +5,8 @@ KvpCms::Application.routes.draw do
     resources :pages, except: [:show]
     resources :page_categories
     resources :users
+
+    patch 'page_preview' => 'pages#preview'
   end
 
   # 任意のパスへのルーティング

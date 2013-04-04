@@ -10,6 +10,13 @@ class Admin::PagesController < ApplicationController
     @pages = Page.all
   end
 
+  # PATCH /admin/page_preview
+  def preview
+    @page = Page.new(page_params)
+
+    render text: @page.body, layout: 'kvp'
+  end
+
   # GET /pages/new
   def new
     @pages = Page.all
