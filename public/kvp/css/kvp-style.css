@@ -1,0 +1,247 @@
+@charset "UTF-8";
+/**
+ * 高専ベンチャー
+ * 基本CSS
+ */
+ 
+#menu_contact{
+  width: 77px;
+  height: 62px;
+  display: inline-block;
+  background-image: url('../img/menu_contact.png');
+}
+#menu_contact:hover{
+  background-position: top right;
+}
+
+#menu_events{
+  width: 76px;
+  height: 62px;
+  display: inline-block;
+  background-image: url('../img/menu_events.png');
+}
+#menu_events:hover{
+  background-position: top right;
+}
+
+#menu_news{
+  width: 76px;
+  height: 62px;
+  display: inline-block;
+  background-image: url('../img/menu_news.png');
+}
+#menu_news:hover{
+  background-position: top right;
+}
+
+#menu_people{
+  width: 77px;
+  height: 62px;
+  display: inline-block;
+  background-image: url('../img/menu_people.png');
+}
+#menu_people:hover{
+  background-position: top right;
+}
+
+#menu_about{
+  width: 77px;
+  height: 62px;
+  display: inline-block;
+  background-image: url('../img/menu_about.png');
+}
+#menu_about:hover{
+  background-position: top right;
+}
+
+#super_container {
+	width: 100%;
+	position: relative;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+    background-image: url('../img/bg-dragon.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+#footer {
+	width: 100%;
+	height: 220px;
+	bottom: 0;
+	position: relative;
+}
+#footer_phone {
+	width: 100%;
+	height: 220px;
+	bottom: 0;
+	position: relative;
+}
+
+#footer h4{
+    color: #ccc;
+}
+#footer a{
+    color: #eee;
+}
+
+.blog{
+    width:93%;
+    background-color:rgba(249, 249, 249, 0.5);
+}
+
+html{
+    height: 100%;
+}
+body {
+    background-image: url("../img/bg.png");
+    background-repeat: repeat-x;
+    background-size: 100%;
+    height:100%;
+}
+#border_top{
+  background-color: #444;
+  width: 100%;
+  height:7px;
+}
+#container_main{
+  padding-bottom: 50px;
+  overflow: hidden;
+  margin: 0 auto -220px;
+  padding-bottom: 275px;
+}
+
+.heading{
+  padding: 10px 0px 0px 50px ;
+  background-image: url('../img/h_bg.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50px;
+  line-height: 27px;
+  font-size: 22px;
+}
+
+@media (max-width: 640px) {
+    .heading { 
+  	  font-size: 15px;
+      padding: 10px 0px 0px 20px ;
+      line-height: 0px;
+    }
+    #super_container{
+	    background-size: 400px;    
+    }
+}
+
+@media only screen and (orientation:portrait){
+    #super_container{
+   }
+}
+
+@media (max-width: 979px) {
+	.heading { 
+	  font-size: 18px;
+	  padding: 1px 0px 0px 30px ;
+	}
+	#menu_contact{
+	  width: 58px;
+	  height: 47px;
+	  background-image: url('../img/mobile/menu_contact.png');
+	}	
+	#menu_events{
+	  width: 58px;
+	  height: 47px;
+	  background-image: url('../img/mobile/menu_events.png');
+	}	
+	#menu_news{
+	  width: 58px;
+	  height: 47px;
+	  background-image: url('../img/mobile/menu_news.png');
+	}	
+	#menu_people{
+	  width: 58px;
+	  height: 47px;
+	  background-image: url('../img/mobile/menu_people.png');
+	}	
+	#menu_about{
+	  width: 58px;
+	  height: 47px;
+	  background-image: url('../img/mobile/menu_about.png');
+	}
+}
+
+table.table-company td,th{
+	height:80px;
+}
+
+table.table-company td{
+	padding-left: 12px;
+}
+
+.row{
+  margin-top: 30px;
+}
+
+.spanm{
+  width: auto;
+  min-width: 30px;
+}
+
+.row .span12 {
+  font-size: medium;
+}
+
+.req_list dt{
+  margin-bottom: 10px;
+}
+.req_list dd{
+  margin-bottom: 15px;
+}
+.req_list .label{
+  font-size: 15px;
+}
+
+/* TODO: dup. legacy code */
+#req_list dt{
+  margin-bottom: 10px;
+}
+#req_list dd{
+  margin-bottom: 15px;
+}
+#req_list .label{
+  font-size: 15px;
+}
+#loading {
+  float: left;
+  margin-left: 20px;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+/* End hide from IE-mac */
+
+.block div {
+    margin-right: 15px;
+    float: left;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
