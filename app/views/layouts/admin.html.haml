@@ -36,18 +36,17 @@
                   %b.caret
                 %ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
                   %li= icon_link_to "一覧", pages_path, 'icon-list'
-                  %li.split
                   %li= icon_link_to "作成", new_page_path, 'icon-pencil'
                   %li= icon_link_to "カテゴリ管理", page_categories_path, 'icon-filter'
               %li= icon_link_to 'ユーザ管理', users_path, 'icon-white icon-user'
 
     .container-fluid
       .row-fluid
-        .span3
+        .span2
           .well.sidebar-nav
             %ul.nav.nav-list
               = yield(:sidebar)
-        .span9
+        .span10
           = bootstrap_flash
           = yield
 

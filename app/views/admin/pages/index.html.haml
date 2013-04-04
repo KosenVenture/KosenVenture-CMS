@@ -1,35 +1,42 @@
-- model_class = Page
+- content_for :sidebar do
+  %li.nav-header ページ管理
+  %li= icon_link_to "一覧", pages_path, 'icon-list'
+  %li= icon_link_to "作成", new_page_path, 'icon-pencil'
+
+  %li.nav-header カテゴリ管理
+  %li= icon_link_to "一覧", page_categories_path, 'icon-list'
+  %li= icon_link_to "作成", new_page_category_path, 'icon-plus'
+
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %h1 ページ一覧
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:title)
-      %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:body)
-      %th= model_class.human_attribute_name(:category_id)
-      %th= model_class.human_attribute_name(:author_id)
-      %th= model_class.human_attribute_name(:published)
-      %th= model_class.human_attribute_name(:published_at)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th 操作
+      %th No.
+      %th カテゴリ
+      %th 親ページ
+      %th
+        ページ名
+        %br
+        タイトル
+      %th 公開状態
+      %th 作成者
   %tbody
     - @pages.each do |page|
       %tr
-        %td= link_to page.id, page_path(page)
-        %td= page.name
-        %td= page.title
-        %td= page.description
-        %td= page.body
-        %td= page.category_id
-        %td= page.author_id
-        %td= page.published
-        %td= page.published_at
-        %td=l page.created_at
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_page_path(page), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), page_path(page), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+          = link_to "確認", root_path + page.name, class: 'btn btn-mini btn-primary', target: '_blank'
+          = link_to "編集", edit_page_path(page), class: 'btn btn-mini'
+          = link_to "削除", page_path(page),
+            method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-mini btn-danger'
+        %td= page.id
+        %td= page.category ? page.category.name : 'なし'
+        %td= page.parent ? page.parent.name : 'なし'
+        %td
+          = page.name
+          %br
+          = page.title
+        %td= page.published
+        %td= page.author.name
 
-= link_to t('.new', :default => t("helpers.links.new")), new_page_path, :class => 'btn btn-primary'
