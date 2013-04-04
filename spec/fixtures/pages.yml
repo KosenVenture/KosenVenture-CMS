@@ -4,3 +4,18 @@ normal_input:
   published: true
   category_id: 1
   author_id: 1
+child1:
+  name: "child1"
+  published: true
+  author_id: 1
+  parent_id: 5000
+child2:
+  name: "child2"
+  published: true
+  author_id: 1
+  parent_id: 5000
+child3:
+  name: "child3"
+  published: true
+  author_id: 1
+  parent_id: 5000

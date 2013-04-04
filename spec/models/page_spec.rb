@@ -10,7 +10,7 @@ describe Page do
   # 正常入力時
   context "with normal input" do
     let(:params) {
-      { name: 'normalpage', published: true, category_id: 1, author_id: 1 }
+      { id: 5000, name: 'normalpage', published: true, category_id: 1, author_id: 1, parent_id: 1 }
     }
 
     it "belongs to category" do
@@ -19,6 +19,15 @@ describe Page do
 
     it "belongs to author" do
       subject.author.should_not be_nil
+    end
+
+    it "belongs to parent page" do
+      subject.parent.should_not be_nil
+    end
+
+    it "has many children pages" do
+      subject.children.should_not be_empty
+      subject.children.count.should == 3
     end
 
     it "is valid" do
@@ -50,6 +59,14 @@ describe Page do
       # nilを返すこと
       it "returns nil" do
         subject.category.should be_nil
+      end
+    end
+
+    describe "#parent_id" do
+      # 空欄は許可
+      it "has no errors" do
+        subject.valid?
+        subject.errors[:parent_id].should be_empty
       end
     end
   end
