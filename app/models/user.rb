@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  #has_secure_password
 
   # Relation ship
 
@@ -9,6 +9,5 @@ class User < ActiveRecord::Base
     presence: true,
     uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
-  validates :password,
-    presence: { on: :create }
+  #validates :password, presence: { on: :create }
 end
