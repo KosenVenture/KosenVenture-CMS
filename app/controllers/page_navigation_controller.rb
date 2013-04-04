@@ -1,8 +1,13 @@
+# encoding: utf-8
+
 class PageNavigationController < ApplicationController
   before_filter :page_finder, only: [:navigate]
   layout 'kvp'
 
   def navigate
+    @site_title = '高専ベンチャー'
+    @page_title = @page.title
+
     render text: @page.body, layout: true
   end
 
