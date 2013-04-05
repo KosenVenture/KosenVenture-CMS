@@ -27,7 +27,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
+        format.html { redirect_to users_url, notice: "#{@user.real_name}を登録しました。" }
       else
         format.html { render action: 'new' }
       end
@@ -39,7 +39,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: "新規ユーザ（#{@user.real_name}）を登録しました。" }
+        format.html { redirect_to users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
       else
         format.html { render action: 'edit' }
       end
