@@ -7,13 +7,12 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'haml-rails'
 gem 'bcrypt-ruby'
 gem 'rails-i18n'
+gem 'twitter-bootstrap-rails'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-
-  gem 'twitter-bootstrap-rails'
 end
 
 group :development, :test do
