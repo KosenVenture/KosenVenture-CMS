@@ -20,8 +20,6 @@ module BootstrapHelper
 
   def icon_link_to(body, url, i_class, html_opts={})
     html_opts[:href] = url
-    content_tag :a, html_opts do
-      icon_tag(i_class) + body
-    end
+    link_to raw(icon_tag(i_class) + body), url, html_opts
   end
 end
