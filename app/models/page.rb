@@ -22,7 +22,7 @@ class Page < ActiveRecord::Base
 
   # Validation
   # 必須項目
-  validates :published, :author_id,
+  validates :author_id,
     presence: true
 
   validates :name,
