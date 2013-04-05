@@ -9,3 +9,27 @@ ja:
         email: '連絡先メールアドレス'
         affiliation: '所属'
         body: 'お問い合わせ内容'
+  activerecord:
+    models:
+      page: 'ページ'
+      page_category: 'ページカテゴリ'
+      user: '管理ユーザ'
+    attributes:
+      page:
+        name: 'ページ名(URL)'
+        title: 'タイトル'
+        description: '説明文'
+        body: '本文'
+        published: '公開する'
+        published_ad: '公開日'
+        parent_id: '親ページ'
+        category_id: 'カテゴリ'
+        author_id: '作成者'
+      page_category:
+        name: 'カテゴリ名'
+        title: 'カテゴリ表示名'
+      user:
+        name: 'ユーザ名'
+        real_name: '表示名'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認入力'
