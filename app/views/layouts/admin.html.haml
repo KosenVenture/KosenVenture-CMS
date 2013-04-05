@@ -20,11 +20,14 @@
             %span.icon-bar
             %span.icon-bar
           = link_to '高専ベンチャー', root_path, class: 'brand', target: '_blank'
-          .container.nav-collapse
-            %ul.nav
-              %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
-              %li= icon_link_to "ページ管理", pages_path, 'icon-white icon-file'
-              %li= icon_link_to 'ユーザ管理', users_path, 'icon-white icon-user'
+          - if current_admin
+            .container.nav-collapse
+              %ul.nav
+                %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
+                %li= icon_link_to "ページ管理", pages_path, 'icon-white icon-file'
+                %li= icon_link_to 'ユーザ管理', users_path, 'icon-white icon-user'
+              %ul.nav.pull-right
+                %li= icon_link_to 'ログアウト', admin_session_path, 'icon-white icon-off', method: :delete
 
     .container-fluid
       .row-fluid

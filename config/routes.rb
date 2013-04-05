@@ -3,8 +3,11 @@ KvpCms::Application.routes.draw do
   # お問い合わせフォーム
   resource :contact, only: [ :show, :create ]
 
-
   # 管理画面
+  get '/admin/login' => 'admin/sessions#new', as: 'admin_login'
+  namespace :admin do
+    resource :session, only: [ :new, :create, :destroy ]
+  end
   get '/admin' => 'admin#dashboard', as: 'admin'
   scope 'admin', module: :admin do
     resources :pages, except: [:show]

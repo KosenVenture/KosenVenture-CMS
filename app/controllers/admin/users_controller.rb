@@ -1,16 +1,14 @@
+# encoding: utf-8
+
 class Admin::UsersController < ApplicationController
-  layout 'admin'
+  layout 'admin/users'
+  before_action :authenticate_admin!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
   end
 
   # GET /users/new
@@ -29,11 +27,9 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
+        format.html { redirect_to users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
       else
         format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +39,9 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to users_url, notice: "新規ユーザ（#{@user.real_name}）を登録しました。" }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +51,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      format.html { redirect_to users_url, notice: '指定したユーザを削除しました。' }
     end
   end
 
@@ -70,6 +63,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :real_name, :password_digest)
+      params.require(:user).permit(:name, :real_name, :password, :password_confirmation)
     end
 end
