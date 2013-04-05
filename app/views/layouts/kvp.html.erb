@@ -10,6 +10,8 @@
     <% end %>
 
     <title><%= @page_title ? "#{@page_title}｜#{@site_title}" : @site_title %></title>
+    <meta name="description" content="高専ベンチャーは高専生のベンチャー企業を運営・支援することで、高専生の社会的な認知と市場価値をあげる事を目的としています。自分の力が社会でどこまで通用するのか、試したい高専生はぜひ参加してください！" />
+    <meta name="keywords" content="高専ベンチャー,高専生,ベンチャー,高専ベンチャープロジェクト" />
 
     <%= csrf_meta_tags %>
 
@@ -45,19 +47,16 @@
     <meta property="og:image" content="http://www.kosen-venture.com/kvp/img/common/facebook_thumb.jpg"></meta>
     <meta property="og:site_name" content="高専ベンチャー">
     <meta property="fb:admins" content="100000748651715" />
-
-    <% unless @facebook_ogp %>
+    <% unless @fb_ogp %>
       <meta property="og:title" content="高専ベンチャー"></meta>
       <meta property="og:url"   content="http://www.kosen-venture.com/"></meta>
       <meta property="og:description" content="高専ベンチャーは、高専生の優れた専門性や技術に対する純粋さを世界に発信していくことで、高専生が都内や海外で活躍する機会と選択肢を提供することをミッションとしています。">
     <% else %>
-      <meta property="og:title" content="<%= @facebook_ogp[:title] %>"></meta>
-      <meta property="og:url"   content="http://www.kosen-venture.com<%= @facebook_ogp[:url] %>"></meta>
-      <meta property="og:description" content="<%= @facebook_ogp[:content] %>">
+      <meta property="og:title" content="<%= @fb_ogp[:title] %>"></meta>
+      <meta property="og:url"   content="http://www.kosen-venture.com<%= @fb_ogp[:url] %>"></meta>
+      <meta property="og:description" content="<%= @fb_ogp[:description] %>">
     <% end %>
-
-
-  <!-- end -->
+    <!-- end -->
 
   </head>
   <body>
