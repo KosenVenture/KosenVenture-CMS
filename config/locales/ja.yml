@@ -1,0 +1,8 @@
+ja:
+  attributes:
+    contact:
+      name_kanji: '名前（漢字）'
+      name_kana: '名前（ひらがな）'
+      email: '連絡先メールアドレス'
+      affiliation: '所属'
+      body: 'お問い合わせ内容'
