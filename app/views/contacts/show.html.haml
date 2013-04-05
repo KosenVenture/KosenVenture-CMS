@@ -1,0 +1,56 @@
+.heading お問い合わせフォーム
+%br
+%h4 個人情報の取り扱いについて
+%p ご連絡の際にご入力頂いた個人情報につきましては連絡のみに使用いたします。
+
+= form_for @contact, url: contact_path, html: { class: 'form-horizontal' } do |f|
+  %legend 連絡をご希望の方は以下の事項を記入して、ご連絡ください。
+  - if @contact.errors.any?
+    .alert.alert-block.fade.in.alert-error
+      %h4 エラー
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div{class: "control-group #{'error' unless @contact.errors[:name_kanji].blank?}"}
+    %label.control-label
+      名前（漢字）
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :name_kanji, class: 'input-large', placeholder: '高専 太郎'
+      %span.help-inline 50文字以内
+
+  %div{class: "control-group #{'error' unless @contact.errors[:name_kana].blank?}"}
+    %label.control-label
+      名前（ひらがな）
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :name_kana, class: 'input-large', placeholder: 'こうせん たろう'
+      %span.help-inline 50文字以内
+
+  %div{class: "control-group #{'error' unless @contact.errors[:affiliation].blank?}"}
+    %label.control-label
+      所属
+      %span.label.label-info 任意
+    .controls
+      = f.text_field :affiliation, class: 'input-xlarge', placeholder: '○○高専，（株）△△'
+      %span.help-inline 100文字以内
+
+  %div{class: "control-group #{'error' unless @contact.errors[:email].blank?}"}
+    %label.control-label
+      連絡先メールアドレス
+      %span.label.label-important 必須
+    .controls
+      = f.email_field :email, class: 'input-xlarge', placeholder: 'kosen.tarou@kosen-venture.com'
+      %span.help-inline 256文字以内
+
+  %div{class: "control-group #{'error' unless @contact.errors[:body].blank?}"}
+    %label.control-label
+      お問い合わせ内容
+      %span.label.label-important 必須
+    .controls
+      = f.text_area :body, class: 'input-xxlarge', rows: 5
+      %span.help-inline 3000文字以内
+
+  .form-actions
+    = f.submit '送信', class: 'btn btn-primary'

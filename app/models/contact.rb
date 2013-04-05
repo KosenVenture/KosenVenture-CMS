@@ -18,7 +18,7 @@ class Contact
   validates :affiliation,
     length: { maximum: 100 }
   validates :body,
-    length: { maximum: 3000 }
+    length: { minimum: 10, maximum: 3000 }
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?
