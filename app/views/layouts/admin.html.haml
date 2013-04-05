@@ -22,16 +22,8 @@
           = link_to '高専ベンチャー', root_path, class: 'brand', target: '_blank'
           .container.nav-collapse
             %ul.nav
-              %li= icon_link_to "Dashboard", admin_path, 'icon-white icon-home'
-              %li.dropdown
-                %a.dropdown-toggle(data-toggle="dropdown" href="#")
-                  %i.icon-white.icon-file
-                  ページ管理
-                  %b.caret
-                %ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
-                  %li= icon_link_to "一覧", pages_path, 'icon-list'
-                  %li= icon_link_to "作成", new_page_path, 'icon-pencil'
-                  %li= icon_link_to "カテゴリ管理", page_categories_path, 'icon-filter'
+              %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
+              %li= icon_link_to "ページ管理", pages_path, 'icon-white icon-file'
               %li= icon_link_to 'ユーザ管理', users_path, 'icon-white icon-user'
 
     .container-fluid
