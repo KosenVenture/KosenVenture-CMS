@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.0.1'
 gem 'haml-rails'
 gem 'bcrypt-ruby'
+gem 'rails-i18n'
 
 group :development do
   gem 'better_errors'
