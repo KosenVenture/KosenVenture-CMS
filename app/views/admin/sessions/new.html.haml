@@ -13,7 +13,7 @@
 
 = form_tag admin_session_path, class: 'form-horizontal' do
   .control-group
-    = label_tag :name, 'ユーザ名', class: 'control-label'
+    = label_tag :name, 'ログイン名', class: 'control-label'
     .controls
       = text_field_tag :name, params[:name], class: 'input-medium'
   .control-group

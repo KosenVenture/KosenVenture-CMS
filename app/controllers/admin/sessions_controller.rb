@@ -14,7 +14,7 @@ class Admin::SessionsController < ApplicationController
       session[:admin_id] = admin.id
       redirect_to admin_url, notice: 'ログインしました。'
     else
-      flash.now.alert = "メールアドレスもしくはパスワードが違います。"
+      flash.now.alert = "ログイン名もしくはパスワードが違います。"
       render :new
     end
   end

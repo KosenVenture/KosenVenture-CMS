@@ -7,7 +7,7 @@
           %li= msg
 
   %div{class: "control-group #{'error' unless @user.errors[:name].blank?}"}
-    = f.label 'ユーザ名', class: 'control-label'
+    = f.label 'ログイン名', class: 'control-label'
     .controls
       = f.text_field :name, class: 'input-large'
 

@@ -29,7 +29,7 @@ ja:
         name: 'カテゴリ名'
         title: 'カテゴリ表示名'
       user:
-        name: 'ユーザ名'
+        name: 'ログイン名'
         real_name: '表示名'
         password: 'パスワード'
         password_confirmation: 'パスワード確認入力'
