@@ -15,9 +15,10 @@
     - @pages.each do |page|
       %tr
         %td
+          = link_to "表示", page.path, class: 'btn btn-mini btn-primary', target: '_blank'
           = link_to "削除", page_path(page),
             method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-mini btn-danger'
-          = link_to "表示", page.path, class: 'btn btn-mini btn-primary', target: '_blank'
+          = link_to "編集", edit_page_path(page), class: 'btn btn-mini btn-success'
         %td
           = link_to page.path, edit_page_path(page)
           %br
