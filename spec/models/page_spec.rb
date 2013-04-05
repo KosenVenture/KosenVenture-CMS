@@ -33,6 +33,25 @@ describe Page do
     it "is valid" do
       subject.valid?.should be_true
     end
+
+    describe "#path" do
+      it "returns true path" do
+        subject.path.should == '/about/normalpage'
+      end
+    end
+  end
+
+  # 親ページ無しの入力
+  context "with no parent input" do
+    let(:params) {
+      { name: 'no_parent', published: true, author_id: 1 }
+    }
+
+    describe "#path" do
+      it "returns true path" do
+        subject.path.should == '/no_parent'
+      end
+    end
   end
 
   # 全空欄入力時

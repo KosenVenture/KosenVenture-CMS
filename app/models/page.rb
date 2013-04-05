@@ -36,6 +36,12 @@ class Page < ActiveRecord::Base
   validate :parent_exists?
 
 
+  # ページのパスを返す
+  def path
+    # 親ページがある場合は再帰して取得
+    (self.parent ? self.parent.path : '') + '/' + self.name
+  end
+
   private
 
   def author_exists?

@@ -18,6 +18,8 @@ class PageNavigationController < ApplicationController
     if params[:path]
       names = params[:path].split('/')
       @page = names.inject(nil) { |page, name| (page ? page.children.find_by!(name: name) : Page.find_by!(name: name)) }
+
+      raise unless @page.path == ('/' + params[:path])
     else
       # 空のときはindexページを探す
       @page = Page.find_by!(name: 'index')
