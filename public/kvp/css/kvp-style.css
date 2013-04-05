@@ -3,12 +3,12 @@
  * 高専ベンチャー
  * 基本CSS
  */
- 
+
 #menu_contact{
   width: 77px;
   height: 62px;
   display: inline-block;
-  background-image: url('../img/menu_contact.png');
+  background-image: url('../img/menu/menu_contact.png');
 }
 #menu_contact:hover{
   background-position: top right;
@@ -18,7 +18,7 @@
   width: 76px;
   height: 62px;
   display: inline-block;
-  background-image: url('../img/menu_events.png');
+  background-image: url('../img/menu/menu_events.png');
 }
 #menu_events:hover{
   background-position: top right;
@@ -28,7 +28,7 @@
   width: 76px;
   height: 62px;
   display: inline-block;
-  background-image: url('../img/menu_news.png');
+  background-image: url('../img/menu/menu_news.png');
 }
 #menu_news:hover{
   background-position: top right;
@@ -38,7 +38,7 @@
   width: 77px;
   height: 62px;
   display: inline-block;
-  background-image: url('../img/menu_people.png');
+  background-image: url('../img/menu/menu_people.png');
 }
 #menu_people:hover{
   background-position: top right;
@@ -48,7 +48,7 @@
   width: 77px;
   height: 62px;
   display: inline-block;
-  background-image: url('../img/menu_about.png');
+  background-image: url('../img/menu/menu_about.png');
 }
 #menu_about:hover{
   background-position: top right;
@@ -60,7 +60,7 @@
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-    background-image: url('../img/bg-dragon.png');
+    background-image: url('../img/common/bg-dragon.png');
     background-position: top right;
     background-repeat: no-repeat;
 }
@@ -94,7 +94,7 @@ html{
     height: 100%;
 }
 body {
-    background-image: url("../img/bg.png");
+    background-image: url("../img/common/bg.png");
     background-repeat: repeat-x;
     background-size: 100%;
     height:100%;
@@ -113,7 +113,7 @@ body {
 
 .heading{
   padding: 10px 0px 0px 50px ;
-  background-image: url('../img/h_bg.png');
+  background-image: url('../img/common/h_bg.png');
   background-position: top left;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -123,13 +123,13 @@ body {
 }
 
 @media (max-width: 640px) {
-    .heading { 
+    .heading {
   	  font-size: 15px;
       padding: 10px 0px 0px 20px ;
       line-height: 0px;
     }
     #super_container{
-	    background-size: 400px;    
+	    background-size: 400px;
     }
 }
 
@@ -139,34 +139,34 @@ body {
 }
 
 @media (max-width: 979px) {
-	.heading { 
+	.heading {
 	  font-size: 18px;
 	  padding: 1px 0px 0px 30px ;
 	}
 	#menu_contact{
 	  width: 58px;
 	  height: 47px;
-	  background-image: url('../img/mobile/menu_contact.png');
-	}	
+	  background-image: url('../img/menu/mobile/menu_contact.png');
+	}
 	#menu_events{
 	  width: 58px;
 	  height: 47px;
-	  background-image: url('../img/mobile/menu_events.png');
-	}	
+	  background-image: url('../img/menu/mobile/menu_events.png');
+	}
 	#menu_news{
 	  width: 58px;
 	  height: 47px;
-	  background-image: url('../img/mobile/menu_news.png');
-	}	
+	  background-image: url('../img/menu/mobile/menu_news.png');
+	}
 	#menu_people{
 	  width: 58px;
 	  height: 47px;
-	  background-image: url('../img/mobile/menu_people.png');
-	}	
+	  background-image: url('../img/menu/mobile/menu_people.png');
+	}
 	#menu_about{
 	  width: 58px;
 	  height: 47px;
-	  background-image: url('../img/mobile/menu_about.png');
+	  background-image: url('../img/menu/mobile/menu_about.png');
 	}
 }
 
