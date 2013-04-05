@@ -33,7 +33,7 @@ class Page < ActiveRecord::Base
   # 関連先の存在チェック
   validate :author_exists?
   validate :category_exists?
-  validate :parent_exists?
+  validate :parent_check
 
 
   # ページのパスを返す
@@ -54,9 +54,13 @@ class Page < ActiveRecord::Base
     errors.add(:category_id, 'はDBに存在しません．') unless category_id.nil? || PageCategory.exists?(category_id)
   end
 
-  def parent_exists?
-    # 親ページが存在するかチェック
-    # parent_id無しは許可（親無し）
-    errors.add(:parent_id, 'ページはDBに存在しません．') unless parent_id.nil? || Page.exists?(parent_id)
+  def parent_check
+    unless parent_id.nil?
+      # 親ページが存在するかチェック
+      # parent_id無しは許可（親無し）
+      errors.add(:parent_id, 'ページはDBに存在しません．') unless Page.exists?(parent_id)
+      # 自分自身を親にできない
+      errors.add(:parent_id, 'このページ自身を親にすることはできません．') if self.id == parent_id
+    end
   end
 end

@@ -54,6 +54,22 @@ describe Page do
     end
   end
 
+  # 自分自身が親ページの不正入力
+  context "with parent is self input" do
+    subject do
+      page = Page.find(1)
+      page.parent_id = 1
+      page
+    end
+
+    describe "#parent_id" do
+      it "has error" do
+        subject.valid?
+        subject.errors[:parent_id].should_not be_empty
+      end
+    end
+  end
+
   # 全空欄入力時
   context "with nil input" do
     let(:params) { nil }
