@@ -11,6 +11,8 @@ KvpCms::Application.routes.draw do
     resources :page_categories
     resources :users
 
+    # 作成と編集でpostとpatchが変わってしまうので・・・
+    post 'page_preview' => 'pages#preview'
     patch 'page_preview' => 'pages#preview'
   end
 
