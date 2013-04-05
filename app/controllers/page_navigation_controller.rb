@@ -23,17 +23,15 @@ class PageNavigationController < ApplicationController
   def page_finder
     if params[:path]
       names = params[:path].split('/')
-      @page = names.inject(nil) { |page, name| (page ? page.children.find_by!(name: name) : Page.find_by!(name: name)) }
+      @page = names.inject(nil) { |page, name| (page ? page.children.find_by!(name: name) : Page.published.find_by!(name: name)) }
 
       raise unless @page.path == ('/' + params[:path])
     else
       # 空のときはindexページを探す
-      @page = Page.find_by!(name: 'index')
+      @page = Page.published.find_by!(name: 'index')
     end
   rescue
     # ページが見つからない場合は404
-    render file: "#{ENV['RAILS_ROOT']}/public/404.html",
-      status: '404',
-      layout: false
+    render 'shared/404', status: '404'
   end
 end

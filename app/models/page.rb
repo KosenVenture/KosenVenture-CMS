@@ -35,6 +35,8 @@ class Page < ActiveRecord::Base
   validate :category_exists?
   validate :parent_check
 
+  # Scopes
+  scope :published, -> { where(published: true) }
 
   # ページのパスを返す
   def path
