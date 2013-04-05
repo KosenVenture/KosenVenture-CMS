@@ -43,11 +43,9 @@ class Admin::PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to pages_url, notice: 'ページを作成しました．' }
-        format.json { render action: 'show', status: :created, location: @page }
+        format.html { redirect_to pages_url, notice: "#{@page.title}を作成しました。" }
       else
         format.html { render action: 'new' }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,11 +59,9 @@ class Admin::PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to pages_url, notice: 'ページを更新しました．' }
-        format.json { head :no_content }
+        format.html { redirect_to pages_url, notice: "#{@page.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,7 +72,6 @@ class Admin::PagesController < ApplicationController
     @page.destroy
     respond_to do |format|
       format.html { redirect_to pages_url }
-      format.json { head :no_content }
     end
   end
 
