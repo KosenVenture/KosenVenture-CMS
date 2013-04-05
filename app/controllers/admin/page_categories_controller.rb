@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Admin::PageCategoriesController < ApplicationController
   layout 'admin/pages'
   before_action :authenticate_admin!
@@ -7,11 +9,6 @@ class Admin::PageCategoriesController < ApplicationController
   # GET /page_categories.json
   def index
     @page_categories = PageCategory.all
-  end
-
-  # GET /page_categories/1
-  # GET /page_categories/1.json
-  def show
   end
 
   # GET /page_categories/new
@@ -30,11 +27,9 @@ class Admin::PageCategoriesController < ApplicationController
 
     respond_to do |format|
       if @page_category.save
-        format.html { redirect_to page_category_url(@page_category), notice: 'Page category was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @page_category }
+        format.html { redirect_to page_categories_url, notice: "#{@page_category.title}を作成しました。" }
       else
         format.html { render action: 'new' }
-        format.json { render json: @page_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +39,9 @@ class Admin::PageCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @page_category.update(page_category_params)
-        format.html { redirect_to page_category_url(@page_category), notice: 'Page category was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to page_categories_url, notice: "#{@page_category.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @page_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +52,6 @@ class Admin::PageCategoriesController < ApplicationController
     @page_category.destroy
     respond_to do |format|
       format.html { redirect_to page_categories_url }
-      format.json { head :no_content }
     end
   end
 
