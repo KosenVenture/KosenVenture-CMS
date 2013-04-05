@@ -9,7 +9,7 @@
   %div{class: "control-group #{'error' unless @page.errors[:category_id].blank?}"}
     = f.label 'カテゴリ', class: 'control-label'
     .controls
-      = f.collection_select :category_id, @categories, :id, :name,
+      = f.collection_select :category_id, @categories, :id, :title,
         { include_blank: 'なし' }
 
   %div{class: "control-group #{'error' unless @page.errors[:parent_id].blank?}"}
