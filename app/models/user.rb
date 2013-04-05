@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   #has_secure_password
 
   # Relation ship
-
+  has_many :pages,
+    foreign_key: :author_id,
+    dependent: :nullify
 
   # Validation
   validates :name,

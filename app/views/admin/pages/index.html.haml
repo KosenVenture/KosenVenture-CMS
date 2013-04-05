@@ -26,5 +26,5 @@
         %td
           %i{class: "icon-#{page.published ? 'ok' : 'remove'}"}
         %td= page.category ? page.category.name : 'なし'
-        %td= page.author.name
+        %td= page.author.real_name if page.author
 

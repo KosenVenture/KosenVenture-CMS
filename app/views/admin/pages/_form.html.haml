@@ -41,7 +41,7 @@
   %div{class: "control-group #{'error' unless @page.errors[:author_id].blank?}"}
     = f.label '作成者', class: 'control-label'
     .controls
-      = f.collection_select :author_id, @users, :id, :name
+      = f.collection_select :author_id, @users, :id, :real_name
 
   %div{class: "control-group #{'error' unless @page.errors[:published].blank?}"}
     = f.label '公開する', class: 'control-label'
