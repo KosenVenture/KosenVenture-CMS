@@ -4,30 +4,26 @@
   %thead
     %tr
       %th 操作
-      %th No.
-      %th カテゴリ
-      %th 親ページ
       %th
-        ページ名
+        URL
         %br
         タイトル
-      %th 公開状態
+      %th 公開
+      %th カテゴリ
       %th 作成者
   %tbody
     - @pages.each do |page|
       %tr
         %td
-          = link_to "確認", root_path + page.name, class: 'btn btn-mini btn-primary', target: '_blank'
-          = link_to "編集", edit_page_path(page), class: 'btn btn-mini'
           = link_to "削除", page_path(page),
             method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-mini btn-danger'
-        %td= page.id
-        %td= page.category ? page.category.name : 'なし'
-        %td= page.parent ? page.parent.name : 'なし'
+          = link_to "表示", page.path, class: 'btn btn-mini btn-primary', target: '_blank'
         %td
-          = page.name
+          = link_to page.path, edit_page_path(page)
           %br
           = page.title
-        %td= page.published
+        %td
+          %i{class: "icon-#{page.published ? 'ok' : 'remove'}"}
+        %td= page.category ? page.category.name : 'なし'
         %td= page.author.name
 
