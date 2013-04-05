@@ -10,9 +10,9 @@ KvpCms::Application.routes.draw do
   end
   get '/admin' => 'admin#dashboard', as: 'admin'
   scope 'admin', module: :admin do
-    resources :pages, except: [:show]
-    resources :page_categories
-    resources :users
+    resources :pages, except: [ :show ]
+    resources :page_categories, except: [ :show ]
+    resources :users, except: [ :show ]
 
     # 作成と編集でpostとpatchが変わってしまうので・・・
     post 'page_preview' => 'pages#preview'
