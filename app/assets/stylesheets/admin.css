@@ -2,5 +2,4 @@
  *= require bootstrap/bootstrap
  *= require bootstrap/bootstrap-responsive
  *= require_self
- *= require_tree .
  */
