@@ -1,5 +1,5 @@
-# KVP CMS
-高専ベンチャープロジェクト Contents Managemet System
+# KV CMS
+高専ベンチャー Contents Managemet System
 
 ## 概要
 [高専ベンチャーのWebサイト](http://www.kosen-venture.com/)を管理するCMSとして開発しました．
@@ -21,7 +21,7 @@ rake db:seed
 ## History
 * v0.0.1(2013/04/06)
 	* 新規リリース
-	* KVP専用バージョン
+	* KV専用バージョン
 	* シンプルなツリー構造のサイトを構成可能(ex: /about, /events/tour13)
 	* ページはHTMLソースで記述可能
 	* レイアウトはファイルを差し替える事で可能（Web上からは不可）
