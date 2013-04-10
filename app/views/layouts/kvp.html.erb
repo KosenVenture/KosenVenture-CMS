@@ -6,7 +6,7 @@
     <% if /iPad/ =~ request.env["HTTP_USER_AGENT"] %>
       <meta name="viewport" content="width=1024px; initial-scale=0.77; maximum-scale=2.0;">
     <% else %>
-      <meta name="viewport" content="width=device-width; initial-scale=0.5; maximum-scale=1.0;">
+      <meta name="viewport" content="width=1024px; initial-scale=0.5; maximum-scale=1.0;">
     <% end %>
 
     <title><%= @page_title ? "#{@page_title}｜#{@site_title}" : @site_title %></title>
