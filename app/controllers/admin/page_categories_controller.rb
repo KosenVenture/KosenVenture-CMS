@@ -2,8 +2,8 @@
 
 class Admin::PageCategoriesController < ApplicationController
   layout 'admin/pages'
-  before_action :authenticate_admin!
-  before_action :set_page_category, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_admin!
+  before_filter :set_page_category, only: [:show, :edit, :update, :destroy]
 
   # GET /page_categories
   # GET /page_categories.json
@@ -38,7 +38,7 @@ class Admin::PageCategoriesController < ApplicationController
   # PATCH/PUT /page_categories/1.json
   def update
     respond_to do |format|
-      if @page_category.update(page_category_params)
+      if @page_category.update_attributes(page_category_params)
         format.html { redirect_to page_categories_url, notice: "#{@page_category.title}を更新しました。" }
       else
         format.html { render action: 'edit' }

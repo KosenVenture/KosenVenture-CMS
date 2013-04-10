@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '3.2.12'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.0.1'
@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'bcrypt-ruby'
 gem 'rails-i18n'
 gem 'twitter-bootstrap-rails'
+gem 'strong_parameters'
 
 group :development do
   gem 'better_errors'
@@ -21,8 +22,8 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', platforms: :ruby
   gem 'uglifier', '>= 1.0.3'
 end

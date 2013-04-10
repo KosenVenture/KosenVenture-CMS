@@ -2,8 +2,8 @@
 
 class Admin::UsersController < ApplicationController
   layout 'admin/users'
-  before_action :authenticate_admin!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_admin!
+  before_filter :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         format.html { redirect_to users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
       else
         format.html { render action: 'edit' }

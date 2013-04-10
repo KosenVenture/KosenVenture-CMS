@@ -2,8 +2,8 @@
 
 class Admin::PagesController < ApplicationController
   layout 'admin/pages'
-  before_action :authenticate_admin!
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_admin!
+  before_filter :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages
   # GET /pages.json
@@ -58,7 +58,7 @@ class Admin::PagesController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      if @page.update(page_params)
+      if @page.update_attributes(page_params)
         format.html { redirect_to pages_url, notice: "#{@page.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
