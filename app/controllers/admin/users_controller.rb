@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::ApplicationController
   layout 'admin/users'
   before_filter :authenticate_admin!
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
@@ -27,7 +27,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notice: "#{@user.real_name}を登録しました。" }
+        format.html { redirect_to admin_users_url, notice: "#{@user.real_name}を登録しました。" }
       else
         format.html { render action: 'new' }
       end
@@ -39,7 +39,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
+        format.html { redirect_to admin_users_url, notice: "#{@user.real_name}の登録内容を変更しました。" }
       else
         format.html { render action: 'edit' }
       end
@@ -51,7 +51,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: '指定したユーザを削除しました。' }
+      format.html { redirect_to admin_users_url, notice: '指定したユーザを削除しました。' }
     end
   end
 

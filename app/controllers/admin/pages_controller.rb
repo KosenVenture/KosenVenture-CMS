@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
   before_filter :set_page, only: [ :show, :edit, :update, :destroy ]
@@ -35,7 +35,7 @@ class Admin::PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to pages_url, notice: "#{@page.title}を作成しました。" }
+        format.html { redirect_to admin_pages_url, notice: "#{@page.title}を作成しました。" }
       else
         format.html { render action: 'new' }
       end
@@ -48,7 +48,7 @@ class Admin::PagesController < ApplicationController
     respond_to do |format|
       if @page.update_attributes(page_params)
         expire_page @page.path # キャッシュを消去
-        format.html { redirect_to pages_url, notice: "#{@page.title}を更新しました。" }
+        format.html { redirect_to admin_pages_url, notice: "#{@page.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
       end
@@ -61,7 +61,7 @@ class Admin::PagesController < ApplicationController
     @page.destroy
     expire_page @page.path # キャッシュを消去
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to admin_pages_url }
     end
   end
 

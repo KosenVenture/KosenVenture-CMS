@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Admin::PageCategoriesController < ApplicationController
+class Admin::PageCategoriesController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
   before_filter :set_page_category, only: [:show, :edit, :update, :destroy]
@@ -27,7 +27,7 @@ class Admin::PageCategoriesController < ApplicationController
 
     respond_to do |format|
       if @page_category.save
-        format.html { redirect_to page_categories_url, notice: "#{@page_category.title}を作成しました。" }
+        format.html { redirect_to admin_page_categories_url, notice: "#{@page_category.title}を作成しました。" }
       else
         format.html { render action: 'new' }
       end
@@ -39,7 +39,7 @@ class Admin::PageCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @page_category.update_attributes(page_category_params)
-        format.html { redirect_to page_categories_url, notice: "#{@page_category.title}を更新しました。" }
+        format.html { redirect_to admin_page_categories_url, notice: "#{@page_category.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
       end
@@ -51,7 +51,7 @@ class Admin::PageCategoriesController < ApplicationController
   def destroy
     @page_category.destroy
     respond_to do |format|
-      format.html { redirect_to page_categories_url }
+      format.html { redirect_to admin_page_categories_url }
     end
   end
 

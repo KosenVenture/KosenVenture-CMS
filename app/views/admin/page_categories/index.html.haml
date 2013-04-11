@@ -10,9 +10,9 @@
     - @page_categories.each do |page_category|
       %tr
         %td
-          = link_to '削除', page_category_path(page_category),
+          = link_to '削除', admin_page_category_path(page_category),
             method: :delete, data: { confirm: '削除してよろしいですか？' },
             class: 'btn btn-mini btn-danger'
-          = link_to '編集', edit_page_category_path(page_category), class: 'btn btn-mini btn-success'
+          = link_to '編集', edit_admin_page_category_path(page_category), class: 'btn btn-mini btn-success'
         %td= page_category.name
         %td= page_category.title
