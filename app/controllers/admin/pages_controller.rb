@@ -59,6 +59,7 @@ class Admin::PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(page_params)
+        expire_page @page.path # キャッシュを消去
         format.html { redirect_to pages_url, notice: "#{@page.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
@@ -70,6 +71,7 @@ class Admin::PagesController < ApplicationController
   # DELETE /pages/1.json
   def destroy
     @page.destroy
+    expire_page @page.path # キャッシュを消去
     respond_to do |format|
       format.html { redirect_to pages_url }
     end

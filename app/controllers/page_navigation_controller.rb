@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class PageNavigationController < ApplicationController
+  caches_page :navigate # ページキャッシュを取る
   before_filter :page_finder, only: [:navigate]
   layout 'kvp'
 
