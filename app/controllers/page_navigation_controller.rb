@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class PageNavigationController < ApplicationController
+  caches_page :navigate # ページキャッシュを取る
   before_filter :page_finder, only: [:navigate]
   layout 'kvp'
 
@@ -23,12 +24,12 @@ class PageNavigationController < ApplicationController
   def page_finder
     if params[:path]
       names = params[:path].split('/')
-      @page = names.inject(nil) { |page, name| (page ? page.children.find_by!(name: name) : Page.published.find_by!(name: name)) }
+      @page = names.inject(nil) { |page, name| (page ? page.children.find_by_name!(name) : Page.published.find_by_name!(name)) }
 
       raise unless @page.path == ('/' + params[:path])
     else
       # 空のときはindexページを探す
-      @page = Page.published.find_by!(name: 'index')
+      @page = Page.published.find_by_name!('index')
     end
   rescue
     # ページが見つからない場合は404

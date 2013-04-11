@@ -9,7 +9,7 @@
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "admin", :media => "all"
 
   %body
     .navbar.navbar-fluid-top.navbar-inverse
@@ -24,8 +24,8 @@
             .container.nav-collapse
               %ul.nav
                 %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
-                %li= icon_link_to "ページ管理", pages_path, 'icon-white icon-file'
-                %li= icon_link_to 'ユーザ管理', users_path, 'icon-white icon-user'
+                %li= icon_link_to "ページ管理", admin_pages_path, 'icon-white icon-file'
+                %li= icon_link_to 'ユーザ管理', admin_users_path, 'icon-white icon-user'
               %ul.nav.pull-right
                 %li= icon_link_to 'ログアウト', admin_session_path, 'icon-white icon-off', method: :delete
 
@@ -42,4 +42,4 @@
       %footer
         %p &copy; Kosen Venture Project 2013
 
-    = javascript_include_tag "application"
+    = javascript_include_tag "admin_page"

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Admin::ApplicationController
   layout 'admin'
   before_filter :redirect_if_authenticated, only: [ :new, :create ]
 
@@ -8,7 +8,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create
-    admin = User.find_by(name: params[:name])
+    admin = User.find_by_name(params[:name])
 
     if admin && admin.authenticate(params[:password])
       session[:admin_id] = admin.id

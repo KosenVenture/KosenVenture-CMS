@@ -1,7 +1,9 @@
 # encoding: utf-8
 
 class Contact
-  include ActiveModel::Model
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
   # フィールド
   attr_accessor :name_kanji, :name_kana, :email, :affiliation, :body
@@ -22,6 +24,16 @@ class Contact
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?
+
+
+
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value) rescue nil
+    end
+  end
+
+  def persisted? ; false ; end
 
   private
 

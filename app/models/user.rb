@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
     uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
   validates :password, presence: { on: :create }
+
+  # Scope
+  scope :select_for_list, -> { select('id, real_name') }
 end

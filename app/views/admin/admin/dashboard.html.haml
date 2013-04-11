@@ -1,16 +1,18 @@
 - content_for :title do
-  ページ管理
+  ダッシュボード
 
 - content_for :sidebar do
   %li.nav-header ページ管理
   %li= icon_link_to "一覧", admin_pages_path, 'icon-list'
   %li= icon_link_to "作成", new_admin_page_path, 'icon-pencil'
 
-  %li.nav-header カテゴリ管理
+  %li.nav-header ページカテゴリ管理
   %li= icon_link_to "一覧", admin_page_categories_path, 'icon-list'
   %li= icon_link_to "作成", new_admin_page_category_path, 'icon-plus'
 
-- content_for :main do
-  = yield
+  %li.nav-header ユーザ管理
+  %li= icon_link_to "一覧", admin_users_path, 'icon-list'
+  %li= icon_link_to "登録", new_admin_user_path, 'icon-plus'
 
-= render template: 'layouts/admin'
+.page-header
+  %h1 高専ベンチャー 管理ページ

@@ -1,4 +1,4 @@
-= form_for @page, html: { id: "PageForm", class: 'form-horizontal' } do |f|
+= form_for [:admin, @page], html: { id: "PageForm", class: 'form-horizontal' } do |f|
   - if @page.errors.any?
     .alert.alert-block.fade.in.alert-error
       %h4 エラー
@@ -56,4 +56,4 @@
   .form-actions
     = f.submit '保存', class: 'btn btn-primary'
     = link_to 'プレビュー', '#', class: 'btn btn-info', id: 'BtnPreview'
-    = link_to 'キャンセル', pages_path, class: 'btn'
+    = link_to 'キャンセル', admin_pages_path, class: 'btn'

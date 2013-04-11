@@ -1,4 +1,4 @@
-= form_for @page_category, :html => { :class => 'form-horizontal' } do |f|
+= form_for [:admin, @page_category], :html => { :class => 'form-horizontal' } do |f|
   - if @page_category.errors.any?
     .alert.alert-block.fade.in.alert-error
       %h4 エラー
@@ -16,4 +16,4 @@
       = f.text_field :title, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to 'キャンセル', page_categories_path, :class => 'btn'
+    = link_to 'キャンセル', admin_page_categories_path, :class => 'btn'
