@@ -11,4 +11,8 @@ class PageCategory < ActiveRecord::Base
     presence: true,
     uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
+
+  # Scope
+  scope :select_for_list, -> { select('id, title') }
+
 end

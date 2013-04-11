@@ -3,12 +3,13 @@
 class Admin::PagesController < ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
-  before_filter :set_page, only: [:show, :edit, :update, :destroy]
+  before_filter :set_page, only: [ :show, :edit, :update, :destroy ]
+  before_filter :set_associated_record, only: [ :new, :edit, :create, :update ]
 
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = Page.select_for_index
   end
 
   # PATCH /admin/page_preview
@@ -20,26 +21,17 @@ class Admin::PagesController < ApplicationController
 
   # GET /pages/new
   def new
-    @pages = Page.all
     @page = Page.new(published: true)
-    @categories = PageCategory.all
-    @users = User.all
   end
 
   # GET /pages/1/edit
   def edit
-    @pages = Page.all
-    @categories = PageCategory.all
-    @users = User.all
   end
 
   # POST /pages
   # POST /pages.json
   def create
-    @pages = Page.all
     @page = Page.new(page_params)
-    @categories = PageCategory.all
-    @users = User.all
 
     respond_to do |format|
       if @page.save
@@ -53,10 +45,6 @@ class Admin::PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
-    @pages = Page.all
-    @categories = PageCategory.all
-    @users = User.all
-
     respond_to do |format|
       if @page.update_attributes(page_params)
         expire_page @page.path # キャッシュを消去
@@ -86,5 +74,12 @@ class Admin::PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:name, :title, :description, :body, :category_id, :author_id, :published, :published_at, :parent_id)
+    end
+
+    # ページ作成，編集に関連するデータの読み込み
+    def set_associated_record
+      @pages = Page.select_for_list
+      @categories = PageCategory.select_for_list
+      @users = User.select_for_list
     end
 end

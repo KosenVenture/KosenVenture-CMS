@@ -37,6 +37,8 @@ class Page < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(published: true) }
+  scope :select_for_index, -> { select(%w(id name title published category_id author_id).join(',')) }
+  scope :select_for_list, -> { select('id, title') }
 
   # ページのパスを返す
   def path
