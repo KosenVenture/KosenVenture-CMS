@@ -24,7 +24,7 @@ class PageNavigationController < ApplicationController
   def page_finder
     if params[:path]
       names = params[:path].split('/')
-      @page = names.inject(nil) { |page, name| (page ? page.children.find_by_name!(name) : Page.published.find_by_name!(name)) }
+      @page = Page.published.find_by_name!(names.last)
 
       raise unless @page.path == ('/' + params[:path])
     else
