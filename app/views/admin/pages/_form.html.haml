@@ -31,12 +31,12 @@
   %div{class: "control-group #{'error' unless @page.errors[:description].blank?}"}
     = f.label '説明文', class: 'control-label'
     .controls
-      = f.text_area :description, class: 'text_field', style: 'width: 80%'
+      = f.text_area :description, class: 'text_field', rows: 2, style: 'width: 80%'
 
   %div{class: "control-group #{'error' unless @page.errors[:body].blank?}"}
     = f.label '本文', class: 'control-label'
     .controls
-      = f.text_area :body, class: 'text_field', rows: 10, style: 'width: 80%'
+      = f.text_area :body, class: 'text_field', rows: 20, style: 'width: 100%'
 
   %div{class: "control-group #{'error' unless @page.errors[:author_id].blank?}"}
     = f.label '作成者', class: 'control-label'
