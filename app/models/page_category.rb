@@ -14,5 +14,6 @@ class PageCategory < ActiveRecord::Base
 
   # Scope
   scope :select_for_list, -> { select('id, title') }
+  scope :newest_updated_order, -> { order('updated_at DESC') }
 
 end

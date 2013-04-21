@@ -15,4 +15,5 @@ class User < ActiveRecord::Base
 
   # Scope
   scope :select_for_list, -> { select('id, real_name') }
+  scope :newest_updated_order, -> { order('updated_at DESC') }
 end

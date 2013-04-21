@@ -9,7 +9,8 @@ class Admin::PagesController < Admin::ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.select_for_index
+    # 最近更新されたページを上位に表示
+    @pages = Page.select_for_index.newest_updated_order
   end
 
   # PATCH /admin/page_preview
@@ -78,8 +79,8 @@ class Admin::PagesController < Admin::ApplicationController
 
     # ページ作成，編集に関連するデータの読み込み
     def set_associated_record
-      @pages = Page.select_for_list
-      @categories = PageCategory.select_for_list
-      @users = User.select_for_list
+      @pages = Page.select_for_list.newest_updated_order
+      @categories = PageCategory.select_for_list.newest_updated_order
+      @users = User.select_for_list.newest_updated_order
     end
 end

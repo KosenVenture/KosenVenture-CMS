@@ -8,7 +8,7 @@ class Admin::PageCategoriesController < Admin::ApplicationController
   # GET /page_categories
   # GET /page_categories.json
   def index
-    @page_categories = PageCategory.all
+    @page_categories = PageCategory.newest_updated_order
   end
 
   # GET /page_categories/new
