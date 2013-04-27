@@ -33,6 +33,11 @@
     .controls
       = f.text_area :description, class: 'text_field', rows: 2, style: 'width: 80%'
 
+  %div{class: "control-group #{'error' unless @page.errors[:keywords].blank?}"}
+    = f.label 'キーワード', class: 'control-label'
+    .controls
+      = f.text_area :keywords, class: 'text_field', rows: 2, style: 'width: 80%'
+
   %div{class: "control-group #{'error' unless @page.errors[:body].blank?}"}
     = f.label '本文', class: 'control-label'
     .controls

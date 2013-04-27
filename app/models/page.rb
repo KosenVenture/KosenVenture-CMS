@@ -30,6 +30,9 @@ class Page < ActiveRecord::Base
     uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
 
+  validates :keywords,
+    length: { maximum: 255 }
+
   # 関連先の存在チェック
   validate :author_exists?
   validate :category_exists?

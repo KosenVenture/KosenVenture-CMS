@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427131155) do
+ActiveRecord::Schema.define(:version => 20130427142823) do
 
   create_table "page_categories", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130427131155) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
+    t.text     "keywords"
   end
 
   create_table "site_configs", :force => true do |t|

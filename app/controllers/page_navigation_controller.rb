@@ -6,7 +6,6 @@ class PageNavigationController < ApplicationController
   layout 'kvp'
 
   def navigate
-    @site_title = '高専ベンチャー'
     @page_title = @page.title
     # descriptionがセットされている場合はfbのリンクをページに
     @fb_ogp = {

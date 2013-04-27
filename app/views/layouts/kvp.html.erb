@@ -9,9 +9,9 @@
       <meta name="viewport" content="width=1024px; initial-scale=0.5; maximum-scale=1.0;">
     <% end %>
 
-    <title><%= @page_title ? "#{@page_title}｜#{@site_title}" : @site_title %></title>
-    <meta name="description" content="高専ベンチャーは高専生のベンチャー企業を運営・支援することで、高専生の社会的な認知と市場価値をあげる事を目的としています。自分の力が社会でどこまで通用するのか、試したい高専生はぜひ参加してください！" />
-    <meta name="keywords" content="高専ベンチャー,高専生,ベンチャー,高専ベンチャープロジェクト" />
+    <title><%= site_title %></title>
+    <meta name="description" content="<%= site_description %>" />
+    <meta name="keywords" content="<%= site_keywords %>" />
 
     <%= csrf_meta_tags %>
 

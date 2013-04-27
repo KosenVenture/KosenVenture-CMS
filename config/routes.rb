@@ -1,5 +1,4 @@
 KvpCms::Application.routes.draw do
-
   # お問い合わせフォーム
   resource :contact, only: [ :show, :create ]
 
@@ -13,6 +12,7 @@ KvpCms::Application.routes.draw do
     resources :pages, except: [ :show ]
     resources :page_categories, except: [ :show ]
     resources :users, except: [ :show ]
+    resource :site_config, only: [ :show, :create, :update ]
 
     # 作成と編集でpostとputが変わってしまうので・・・
     post 'page_preview' => 'pages#preview'

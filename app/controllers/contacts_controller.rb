@@ -5,7 +5,6 @@ class ContactsController < ApplicationController
 
   # GET /contact
   def show
-    @site_title = '高専ベンチャー'
     @page_title = 'お問い合わせ'
     @contact = Contact.new
   end

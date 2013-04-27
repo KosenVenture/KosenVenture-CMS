@@ -1,0 +1,23 @@
+= form_for [:admin, @config], url: admin_site_config_path, html: { class: 'form-horizontal' } do |f|
+  - if @config.errors.any?
+    .alert.alert-block.fade.in.alert-error
+      %h4 エラー
+      %ul
+        - @config.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div{class: "control-group #{'error' unless @config.errors[:title].blank?}"}
+    = f.label 'サイトタイトル', class: 'control-label'
+    .controls
+      = f.text_field :title, class: 'input-large'
+  %div{class: "control-group #{'error' unless @config.errors[:description].blank?}"}
+    = f.label 'サイト説明', class: 'control-label'
+    .controls
+      = f.text_area :description, class: 'text_field', rows: 3, style: 'width: 80%'
+  %div{class: "control-group #{'error' unless @config.errors[:keywords].blank?}"}
+    = f.label 'サイトキーワード', class: 'control-label'
+    .controls
+      = f.text_area :keywords, class: 'text_field', rows: 3, style: 'width: 80%'
+
+  .form-actions
+    = f.submit '保存', class: 'btn btn-primary'
