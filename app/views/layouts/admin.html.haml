@@ -26,6 +26,7 @@
                 %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
                 %li= icon_link_to "ページ管理", admin_pages_path, 'icon-white icon-file'
                 %li= icon_link_to 'ユーザ管理', admin_users_path, 'icon-white icon-user'
+                %li= icon_link_to 'サイト管理', admin_site_config_path, 'icon-white icon-globe'
               %ul.nav.pull-right
                 %li= icon_link_to 'ログアウト', admin_session_path, 'icon-white icon-off', method: :delete
 
@@ -34,12 +35,26 @@
         .span2
           .well.sidebar-nav
             %ul.nav.nav-list
-              = yield(:sidebar)
+              %li.nav-header ページ管理
+              %li= icon_link_to "一覧", admin_pages_path, 'icon-list'
+              %li= icon_link_to "作成", new_admin_page_path, 'icon-pencil'
+
+              %li.nav-header ページカテゴリ管理
+              %li= icon_link_to "一覧", admin_page_categories_path, 'icon-list'
+              %li= icon_link_to "作成", new_admin_page_category_path, 'icon-plus'
+
+              %li.nav-header ユーザ管理
+              %li= icon_link_to "一覧", admin_users_path, 'icon-list'
+              %li= icon_link_to "登録", new_admin_user_path, 'icon-plus'
+
+              %li.nav-header サイト管理
+              %li= icon_link_to "サイト設定", admin_site_config_path, 'icon-cog'
+
         .span10
           = bootstrap_flash
           = content_for?(:main) ? yield(:main) : yield
 
       %footer
-        %p &copy; Kosen Venture Project 2013
+        %p &copy; Kosen Venture 2013
 
     = javascript_include_tag "admin_page"
