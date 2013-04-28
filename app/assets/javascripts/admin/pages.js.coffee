@@ -13,3 +13,14 @@ $("#BtnPreview").click () ->
         alert('プレビューの読み込みに失敗しました。')
   }
 
+# 本文HTMLエディタ
+editor = ace.edit("body_editor")
+editor.setTheme("ace/theme/twilight")
+editor.getSession().setMode("ace/mode/html")
+
+textarea = $('textarea[name="page[body]"]')
+textarea.hide()
+# 編集されたらもとのtextareaに反映する
+editor.getSession().setValue(textarea.val())
+editor.getSession().on 'change', () ->
+  textarea.val(editor.getSession().getValue())
