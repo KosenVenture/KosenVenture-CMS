@@ -74,7 +74,7 @@ class Admin::PagesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :title, :description, :body, :category_id, :author_id, :published, :published_at, :parent_id)
+      params.require(:page).permit(:name, :title, :description, :body, :category_id, :author_id, :published, :published_at, :parent_id, :priority)
     end
 
     # ページ作成，編集に関連するデータの読み込み

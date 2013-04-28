@@ -13,3 +13,5 @@ $("#BtnPreview").click () ->
         alert('プレビューの読み込みに失敗しました。')
   }
 
+$("input[name='page[priority]']").change () ->
+  $("#page_priority_disp").html($("input[name='page[priority]']").val())
