@@ -9,6 +9,7 @@ gem 'bcrypt-ruby'
 gem 'rails-i18n'
 gem 'twitter-bootstrap-rails'
 gem 'strong_parameters'
+gem 'sitemap_generator'
 
 group :development do
   gem 'better_errors'

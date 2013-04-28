@@ -33,6 +33,13 @@ class Page < ActiveRecord::Base
   validates :keywords,
     length: { maximum: 255 }
 
+  validates :priority,
+    presence: true,
+    numericality: {
+      greater_than_or_equal_to: 0.1,
+      less_than_or_equal_to: 1.0
+    }
+
   # 関連先の存在チェック
   validate :author_exists?
   validate :category_exists?
@@ -40,7 +47,7 @@ class Page < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(published: true) }
-  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id).join(',')) }
+  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority).join(',')) }
   scope :select_for_list, -> { select('id, title, parent_id') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
 

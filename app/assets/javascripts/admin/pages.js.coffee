@@ -24,3 +24,8 @@ textarea.hide()
 editor.getSession().setValue(textarea.val())
 editor.getSession().on 'change', () ->
   textarea.val(editor.getSession().getValue())
+
+# ページ順位スライダー
+$("input[name='page[priority]']").change () ->
+  $("#page_priority_disp").html($("input[name='page[priority]']").val())
+
