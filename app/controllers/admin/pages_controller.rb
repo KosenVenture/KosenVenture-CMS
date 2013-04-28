@@ -16,6 +16,7 @@ class Admin::PagesController < Admin::ApplicationController
   # PATCH /admin/page_preview
   def preview
     @page = Page.new(page_params)
+    @site_config = SiteConfig.first
 
     render text: @page.body, layout: 'kvp'
   end
