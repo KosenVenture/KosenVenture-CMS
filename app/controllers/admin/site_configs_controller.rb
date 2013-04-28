@@ -13,6 +13,10 @@ class Admin::SiteConfigsController < Admin::ApplicationController
 
     respond_to do |format|
       if @config.save
+        Page.all.each do |p|
+          expire_page p.path # キャッシュを消去
+        end
+
         format.html {
           redirect_to admin_site_config_url,
             notice: 'サイト設定を更新しました。'
@@ -28,6 +32,10 @@ class Admin::SiteConfigsController < Admin::ApplicationController
       @config = SiteConfig.first
 
       if @config.update_attributes(config_params)
+        Page.all.each do |p|
+          expire_page p.path # キャッシュを消去
+        end
+
         format.html { redirect_to admin_site_config_url,
           notice: "サイト設定を更新しました。" }
       else
