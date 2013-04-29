@@ -20,4 +20,16 @@ module ApplicationHelper
       @page.keywords
     end
   end
+
+  def sortable_link(title, column, params)
+    order = params[:order]
+    desc = params[:desc]
+
+    icon_class = (desc == 'true' ? 'icon-arrow-up' : 'icon-arrow-down')
+    icon = (order == column ? icon_tag(icon_class) : '')
+
+    link_to raw(icon + title),
+      order: column,
+      desc: (desc == 'true' ? 'false' : 'true')
+  end
 end

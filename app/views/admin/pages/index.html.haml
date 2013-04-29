@@ -4,13 +4,15 @@
   %thead
     %tr
       %th 操作
+      %th= sortable_link '重要度', 'priority', params
       %th
         URL
         %br
-        タイトル
-      %th 公開
-      %th カテゴリ
-      %th 作成者
+        = sortable_link 'タイトル', 'title', params
+      %th= sortable_link '公開', 'published', params
+      %th= sortable_link 'カテゴリ', 'category_id', params
+      %th= sortable_link '作成者', 'author_id', params
+      %th= sortable_link '最終更新日', 'updated_at', params
   %tbody
     - @pages.each do |page|
       %tr
@@ -19,6 +21,7 @@
           = link_to "削除", admin_page_path(page),
             method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-mini btn-danger'
           = link_to "編集", edit_admin_page_path(page), class: 'btn btn-mini btn-success'
+        %td= page.priority
         %td
           = link_to page.path, edit_admin_page_path(page)
           %br
@@ -27,4 +30,5 @@
           %i{class: "icon-#{page.published ? 'ok' : 'remove'}"}
         %td= page.category ? page.category.name : 'なし'
         %td= page.author.real_name if page.author
+        %td= l page.updated_at, format: :short
 

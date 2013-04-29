@@ -47,9 +47,10 @@ class Page < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(published: true) }
-  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority).join(',')) }
+  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority updated_at).join(',')) }
   scope :select_for_list, -> { select('id, title, parent_id') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
+  scope :priority_order, -> { order('priority DESC') }
 
   # ページのパスを返す
   def path

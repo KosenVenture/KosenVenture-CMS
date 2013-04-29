@@ -9,8 +9,14 @@ class Admin::PagesController < Admin::ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    # 最近更新されたページを上位に表示
-    @pages = Page.select_for_index.newest_updated_order
+    # ソート順の指定に従う
+    if params[:order]
+      order_str = params[:order] + (params[:desc] == 'true' ? ' DESC' : '')
+      @pages = Page.includes(:author, :category).select_for_index.order(order_str)
+    else
+      # 最近更新されたページを上位に表示
+      @pages = Page.includes(:author, :category).select_for_index.newest_updated_order
+    end
   end
 
   # PATCH /admin/page_preview
