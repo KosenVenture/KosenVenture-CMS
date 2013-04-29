@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428130204) do
+ActiveRecord::Schema.define(:version => 20130429030031) do
 
   create_table "page_categories", :force => true do |t|
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pages", :force => true do |t|
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(:version => 20130428130204) do
     t.integer  "author_id"
     t.boolean  "published"
     t.datetime "published_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "parent_id"
     t.text     "keywords"
     t.float    "priority"
+    t.string   "path"
   end
 
   create_table "site_configs", :force => true do |t|
@@ -48,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20130428130204) do
     t.string   "name"
     t.string   "real_name"
     t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

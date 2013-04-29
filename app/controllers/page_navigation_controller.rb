@@ -22,13 +22,10 @@ class PageNavigationController < ApplicationController
   # ページを探す
   def page_finder
     if params[:path]
-      names = params[:path].split('/')
-      @page = Page.published.find_by_name!(names.last)
-
-      raise unless @page.path == ('/' + params[:path])
+      @page = Page.published.find_by_path!('/' + params[:path])
     else
       # 空のときはindexページを探す
-      @page = Page.published.find_by_name!('index')
+      @page = Page.published.find_by_path!('/index')
     end
   rescue
     # ページが見つからない場合は404

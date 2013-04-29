@@ -4,18 +4,26 @@ normal_input:
   published: true
   category_id: 1
   author_id: 1
+  path: "/about"
+  priority: 0.5
 child1:
   name: "child1"
   published: true
   author_id: 1
   parent_id: 5000
+  path: "/about/normalpage/child1"
+  priority: 0.5
 child2:
   name: "child2"
   published: true
   author_id: 1
   parent_id: 5000
+  path: "/about/normalpage/child2"
+  priority: 0.5
 child3:
   name: "child3"
   published: true
   author_id: 1
   parent_id: 5000
+  path: "/about/normalpage/child3"
+  priority: 0.5

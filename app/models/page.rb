@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Page < ActiveRecord::Base
+  before_validation :set_path
+
   # Relation ship
   belongs_to :author,
     class_name: 'User',
@@ -27,8 +29,10 @@ class Page < ActiveRecord::Base
 
   validates :name,
     presence: true,
-    uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
+
+  validates :path,
+    uniqueness: true
 
   validates :keywords,
     length: { maximum: 255 }
@@ -44,18 +48,19 @@ class Page < ActiveRecord::Base
   validate :author_exists?
   validate :category_exists?
   validate :parent_check
+  validate :uniq_path?
 
   # Scopes
   scope :published, -> { where(published: true) }
-  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority updated_at).join(',')) }
+  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority updated_at path).join(',')) }
   scope :select_for_list, -> { select('id, title, parent_id') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :priority_order, -> { order('priority DESC') }
 
   # ページのパスを返す
-  def path
+  def trace_path
     # 親ページがある場合は再帰して取得
-    (self.parent ? self.parent.path : '') + '/' + self.name
+    (self.parent ? self.parent.trace_path : '') + '/' + self.name
   end
 
   private
@@ -78,5 +83,13 @@ class Page < ActiveRecord::Base
       # 自分自身を親にできない
       errors.add(:parent_id, 'このページ自身を親にすることはできません．') if self.id == parent_id
     end
+  end
+
+  def uniq_path?
+    errors.add(:parent_id, '同じ階層に同名のページが存在します．') if Page.where(['id != ?', self.id]).exists?(path: self.trace_path)
+  end
+
+  def set_path
+    self.path = self.trace_path
   end
 end

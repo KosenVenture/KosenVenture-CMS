@@ -6,7 +6,7 @@
       %th 操作
       %th= sortable_link '重要度', 'priority', params
       %th
-        URL
+        = sortable_link 'URL', 'path', params
         %br
         = sortable_link 'タイトル', 'title', params
       %th= sortable_link '公開', 'published', params

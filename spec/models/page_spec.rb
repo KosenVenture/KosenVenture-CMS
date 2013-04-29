@@ -10,7 +10,7 @@ describe Page do
   # 正常入力時
   context "with normal input" do
     let(:params) {
-      { id: 5000, name: 'normalpage', published: true, category_id: 1, author_id: 1, parent_id: 1 }
+      { id: 5000, name: 'normalpage', published: true, category_id: 1, author_id: 1, parent_id: 1, path: '/about/normalpage', priority: 0.5 }
     }
 
     it "belongs to category" do
@@ -34,9 +34,9 @@ describe Page do
       subject.valid?.should be_true
     end
 
-    describe "#path" do
+    describe "#trace_path" do
       it "returns true path" do
-        subject.path.should == '/about/normalpage'
+        subject.trace_path.should == '/about/normalpage'
       end
     end
   end
@@ -44,12 +44,12 @@ describe Page do
   # 親ページ無しの入力
   context "with no parent input" do
     let(:params) {
-      { name: 'no_parent', published: true, author_id: 1 }
+      { name: 'no_parent', published: true, author_id: 1, priority: 0.5 }
     }
 
-    describe "#path" do
+    describe "#trace_path" do
       it "returns true path" do
-        subject.path.should == '/no_parent'
+        subject.trace_path.should == '/no_parent'
       end
     end
   end
@@ -72,7 +72,7 @@ describe Page do
 
   # 全空欄入力時
   context "with nil input" do
-    let(:params) { nil }
+    let(:params) { { name: '' } }
 
     describe "#name" do
       it "has errors" do
@@ -108,7 +108,7 @@ describe Page do
 
   # 日本語名の場合
   context "with Japanese name input" do
-    let(:params) { { name: 'ほげ', published: true, category_id: 1, author_id: 1 } }
+    let(:params) { { name: 'ほげ', published: true, category_id: 1, author_id: 1, priority: 0.5 } }
 
     it "is not valid" do
       subject.valid?.should be_false
