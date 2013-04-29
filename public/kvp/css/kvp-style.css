@@ -95,6 +95,7 @@ html{
     height: 100%;
 }
 body {
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
     background-image: url("../img/common/bg.png");
     background-repeat: repeat-x;
     background-size: 100%;
@@ -189,7 +190,7 @@ table.table-company td{
 }
 
 .row .span12 {
-  font-size: medium;
+  /*font-size: medium;*/
 }
 
 .req_list dt{
