@@ -9,6 +9,22 @@ ja:
         email: '連絡先メールアドレス'
         affiliation: '所属'
         body: 'お問い合わせ内容'
+      event_entry:
+        name_kanji: '名前（漢字）'
+        name_kana: '名前（ひらがな）'
+        email: '連絡先メールアドレス'
+        sexial: '性別'
+        birthday: '生年月日'
+        nct: '在籍高専'
+        grade: '学年'
+        major: '所属学科'
+        twitter: 'Twitter ID'
+        github: 'Github ID'
+        facebook: 'Facebook URL'
+        appeal: '本イベントに向けての意気込み'
+        myproduct: 'Web上にある作品・ブログなど'
+        question1: '高専ベンチャーをとの経緯で知りましたか？（複数選択可）'
+        mail_ok: '「高専ベンチャー」からの連絡を受け取る'
   activerecord:
     models:
       page: 'ページ'
