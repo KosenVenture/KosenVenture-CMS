@@ -157,7 +157,7 @@
       %label
         %p
           今後、高専ベンチャーからの案内を差し上げてもよろしいですか？
-        = f.check_box :mail_ok
+        = f.check_box :mail_ok, {}, '受け取る', '受け取らない'
         「高専ベンチャー」からのお知らせを受け取る
   .form-actions
     = f.submit 'エントリー', class: 'btn btn-primary',
