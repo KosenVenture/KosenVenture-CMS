@@ -1,0 +1,146 @@
+- @entry = EventEntry.new unless @entry
+
+= form_for @entry, url: '', remote: true, html: { class: 'form-horizontal' } do |f|
+  %legend エントリーされる方は、以下のフォームを記入してエントリーしてください。
+  %p ※個人情報は、エントリー選考や今後のイベントの案内等、適切な範囲内で使用します。
+  - if @entry.errors.any?
+    .alert.alert-block.fade.in.alert-error
+      %h4 エラー
+      %ul
+        - @entry.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div{id: 'name_kanji', class: "control-group #{'error' unless @entry.errors[:name_kanji].blank?}"}
+    %label.control-label
+      名前（漢字）
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :name_kanji, class: 'input-large', placeholder: '例）高専 太郎'
+
+  %div{id:'name_kana', class: "control-group #{'error' unless @entry.errors[:name_kana].blank?}"}
+    %label.control-label
+      名前（ひらがな）
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :name_kana, class: 'input-large', placeholder: '例）こうせん たろう'
+
+  %div{id:'sexial', class: "control-group #{'error' unless @entry.errors[:sexial].blank?}"}
+    %label.control-label
+      性別
+      %span.label.label-important 必須
+    .controls
+      %label
+        = f.radio_button :sexial, '男性', class: 'input-small'
+        男性
+        = f.radio_button :sexial, '女性', class: 'input-small'
+        女性
+
+  %div{id:'birthday', class: "control-group #{'error' unless @entry.errors[:birthday].blank?}"}
+    %label.control-label
+      生年月日
+      %span.label.label-important 必須
+    .controls
+      = f.date_select :birthday, { start_year: Time.now.year - 30, end_year: Time.now.year - 15 }, class: 'input-small'
+
+  %div{id:'nct', class: "control-group #{'error' unless @entry.errors[:nct].blank?}"}
+    %label.control-label
+      在籍高専
+      %span.label.label-important 必須
+    .controls
+      = f.select :nct, EventEntry::NCT_NAMES,
+        { include_blank: '在籍高専を選択してください' },
+        class: 'input-xlarge'
+
+
+  %div{id:'major', class: "control-group #{'error' unless @entry.errors[:major].blank?}"}
+    %label.control-label
+      所属学科
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :major, class: 'input-xlarge', placeholder: '例）電子情報工学科'
+
+  %div{id:'grade', class: "control-group #{'error' unless @entry.errors[:grade].blank?}"}
+    %label.control-label
+      学年
+      %span.label.label-important 必須
+    .controls
+      = f.select :grade, EventEntry::GRADES,
+        { include_blank: '学年を選択してください' },
+        class: 'input-normal'
+
+  %div{id:'email', class: "control-group #{'error' unless @entry.errors[:email].blank?}"}
+    %label.control-label
+      連絡先メールアドレス
+      %span.label.label-important 必須
+    .controls
+      = f.email_field :email, class: 'input-xlarge',
+        placeholder: '例）kosen.tarou@kosen-venture.com'
+
+  %div{id:'twitter', class: "control-group #{'error' unless @entry.errors[:twitter].blank?}"}
+    %label.control-label
+      Twitter ID
+      %span.label.label-info 任意
+    .controls
+      .input-prepend
+        %span.add-on @
+        = f.text_field :twitter, class: 'input-medium',
+          placeholder: '例）KosenVenture'
+
+  %div{id:'facebook', class: "control-group #{'error' unless @entry.errors[:facebook].blank?}"}
+    %label.control-label
+      Facebook URL
+      %span.label.label-info 任意
+    .controls
+      = f.text_field :facebook, class: 'input-xxlarge',
+        placeholder: '例）https://www.facebook.com/kosenventure'
+
+  %div{id:'github', class: "control-group #{'error' unless @entry.errors[:github].blank?}"}
+    %label.control-label
+      Github ID
+      %span.label.label-info 任意
+    .controls
+      = f.text_field :github, class: 'input-medium',
+        placeholder: '例）KosenVenture'
+      %p.help-block ※アカウントをお持ちでも、知られたく無い場合などは空欄で構いません。
+
+  %div{id:'appeal', class: "control-group #{'error' unless @entry.errors[:appeal].blank?}"}
+    %label.control-label
+      自由記入欄
+      %span.label.label-important 必須
+    .controls
+      = f.text_area :appeal, class: 'input-xxlarge', rows: 8,
+        placeholder: '自己アピール/意気込み/質問/応募動機など。字数に制限はありません。'
+
+  %div{id:'myproduct', class: "control-group #{'error' unless @entry.errors[:myproduct].blank?}"}
+    %label.control-label
+      Web上にある作品・ブログなど
+      %span.label.label-info 任意
+    .controls
+      = f.text_area :myproduct, class: 'input-xxlarge', rows: 5,
+        placeholder: 'Web上にある過去に開発した自分の作品・ブログなどがあれば、記入してください。'
+
+  %div{id:'question1', class: "control-group #{'error' unless @entry.errors[:question1].blank?}"}
+    %label.control-label
+      アンケート
+      %span.label.label-info 任意
+    .controls
+      %strong 高専ベンチャーをどの経緯で知りましたか？（複数選択可）
+      - EventEntry::QUESTION1.each_with_index do |s, i|
+        %label
+          = f.check_box :question1, { name: "event_entry[question1][]" }, s, ''
+          = s
+
+  %div{id:'mail_ok', class: "control-group #{'error' unless @entry.errors[:mail_ok].blank?}"}
+    %label.control-label
+      今後のお知らせ
+      %span.label.label-info 任意
+    .controls
+      %label
+        %p
+          今後、高専ベンチャーからの案内を差し上げてもよろしいですか？
+        = f.check_box :mail_ok
+        「高専ベンチャー」からのお知らせを受け取る
+
+  .form-actions
+    = f.submit 'エントリー', class: 'btn btn-primary',
+      confirm: 'エントリーを送信します。よろしいですか？'

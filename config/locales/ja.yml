@@ -23,7 +23,7 @@ ja:
         facebook: 'Facebook URL'
         appeal: '本イベントに向けての意気込み'
         myproduct: 'Web上にある作品・ブログなど'
-        question1: '高専ベンチャーをとの経緯で知りましたか？（複数選択可）'
+        question1: '高専ベンチャーをどの経緯で知りましたか？（複数選択可）'
         mail_ok: '「高専ベンチャー」からの連絡を受け取る'
   activerecord:
     models:
