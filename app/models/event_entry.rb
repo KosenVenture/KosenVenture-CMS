@@ -92,7 +92,7 @@ class EventEntry
     :mail_ok
 
   # 必須項目
-  validates :name_kanji, :name_kana, :email, :sexial, :birthday,
+  validates :name_kanji, :name_kana, :email, :sexial,
     :nct, :grade, :major, :appeal,
     presence: true
 
@@ -103,10 +103,6 @@ class EventEntry
     length: { maximum: 256 }
   validates :twitter, :github,
     length: { maximum: 50 }
-  validates :nct,
-    inclusion: { in: NCT_NAMES }
-  validates :grade,
-    inclusion: { in: GRADES }
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?
