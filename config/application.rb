@@ -61,6 +61,6 @@ module KvpCms
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    ADMIN_EMAIL = 'ml@kosen-venture.com'
+    ADMIN_EMAIL = (Rails.env.production? ? 'ml@kosen-venture.com' : 'hayato.okumoto@kosen-venture.com')
   end
 end
