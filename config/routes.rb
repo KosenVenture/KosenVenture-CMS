@@ -1,6 +1,8 @@
 KvpCms::Application.routes.draw do
   # お問い合わせフォーム
   resource :contact, only: [ :show, :create ]
+  # エントリーフォーム
+  resource :event_entry, only: [ :create ]
 
   # 管理画面
   get '/admin/login' => 'admin/sessions#new', as: 'admin_login'

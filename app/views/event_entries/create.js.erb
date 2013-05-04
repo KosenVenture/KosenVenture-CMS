@@ -1,0 +1,25 @@
+$('.control-group').removeClass('error');
+$('#errors_ul').empty();
+
+<% if @entry.valid? %>
+  // フォームを隠してメッセージを表示
+  $('form#new_event_entry').slideUp('slow');
+  $('#success_message').slideDown("slow");
+<% else %>
+  // エラーがある場合
+
+  // エラーのあるフォームをハイライト
+  <% errors = @entry.errors.map{|i| i }.uniq %>
+  <% errors.each do |i| %>
+    $('.control-group#<%= i.to_s %>').addClass('error');
+  <% end %>
+
+  // エラーメッセージを表示
+  <% @entry.errors.full_messages.each do |msg| %>
+    $('#errors_ul').append('<li><%= msg %></li>');
+  <% end %>
+  $('#error_block').slideDown('fast');
+<% end %>
+
+// フォームのトップへスクロール
+$('html,body').animate({ scrollTop: $('a[name=entry_form]').offset().top }, 'fast');
