@@ -84,7 +84,8 @@ class EventEntry
   ]
 
   # フィールド
-  attr_accessor :name_kanji, :name_kana, :email, :sexial, :birthday,
+  attr_accessor :name_kanji, :name_kana, :email, :sexial,
+    :birth_year, :birth_month, :birth_day,
     :nct, :grade, :major,
     :twitter, :github, :facebook,
     :appeal, :myproduct,
@@ -106,6 +107,10 @@ class EventEntry
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?
+
+  def birthday
+    Date.new(self.birth_year.to_i, self.birth_month.to_i, self.birth_day.to_i)
+  end
 
   def initialize(attributes = {})
     attributes.each do |name, value|

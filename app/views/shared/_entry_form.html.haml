@@ -56,8 +56,19 @@
       生年月日
       %span.label.label-important 必須
     .controls
-      = f.date_select :birthday,
-        { start_year: Time.now.year - 30, end_year: Time.now.year - 15 },
+      = select_year Time.now,
+      { start_year: Time.now.year - 30,
+        end_year: Time.now.year - 15,
+        prefix: 'event_entry',
+        field_name: 'birth_year' },
+      class: 'input-small'
+      = select_month Time.now,
+      { prefix: 'event_entry',
+        field_name: 'birth_month' },
+        class: 'input-small'
+      = select_day Time.now,
+      { prefix: 'event_entry',
+        field_name: 'birth_day' },
         class: 'input-small'
 
   .control-group#nct
