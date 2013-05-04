@@ -14,7 +14,7 @@ class PageNavigationController < ApplicationController
       description: @page.description
     } unless @page.description.blank?
 
-    render text: @page.body, layout: true
+    render inline: @page.body, layout: true
   end
 
   private

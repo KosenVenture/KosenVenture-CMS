@@ -24,7 +24,7 @@ class Admin::PagesController < Admin::ApplicationController
     @page = Page.new(page_params)
     @site_config = SiteConfig.first
 
-    render text: @page.body, layout: 'kvp'
+    render inline: @page.body, layout: 'kvp'
   end
 
   # GET /pages/new
