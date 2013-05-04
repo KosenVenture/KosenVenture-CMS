@@ -1,0 +1,66 @@
+高専ベンチャー
+
+◆　エントリー受付のお知らせ　◆
+
+<%= @entry.name_kanji %> 様
+
+このたびは、エントリーありがとうございます。
+エントリーをシステムにて受け付けましたので、ご報告いたします。
+
+このあと近日中に本メールアドレス宛へ、
+運営スタッフから直接ご連絡を差し上げますのでしばらくお待ちください。
+
+
+◆　エントリー内容　◆
+
+【受付日時】<%= l Time.now, fomrat: :long %>
+
+【氏名（漢字）】<%= @entry.name_kanji %>
+【氏名（ひらがな）】<%= @entry.name_kana %>
+
+【性別】<%= @entry.sexial %>
+【生年月日】<%=l @entry.birthday %>
+
+【在籍高専】<%= @entry.nct %>
+【所属学科】<%= @entry.major %>
+【学年】<%= @entry.grade %>
+
+【連絡先メールアドレス】<%= @entry.email %>
+【Twitter ID】<%= @entry.twitter %>
+【Facebook URL】<%= @entry.facebook %>
+【Github ID】<%= @entry.github %>
+
+【自由記入欄】
+<%= @entry.appeal %>
+
+【Web上にある作品・ブログなど】
+<%= @entry.myproduct %>
+
+【高専ベンチャーをどの経緯で知りましたか？】
+<% @entry.question1.each do |ans| %>
+<% unless ans.blank? %>・<%= ans %><% end %>
+<% end %>
+
+【今後のお知らせ】<%= @entry.mail_ok %>
+
+＝ エントリー内容：ここまで ＝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+　　　　　　　　◆　その他のお問い合せなど　◆
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●ご不明な点／お問い合せはこちら
+http://www.kosen-venture.com/contact
+上記URLよりお問い合わせが可能です。
+または
+ml@kosen-venture.com
+に直接メールをお送り頂ければ対応させていただきます。
+
+●本メールにお心当たりがない方
+ml@kosen-venture.com
+本メールにお心当たりがない場合、大変ご迷惑ながら誤送信の可能性があります。
+お手数をおかけしますが、上記アドレスまでご連絡ください。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+高専ベンチャー　http://www.kosen-venture.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

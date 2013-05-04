@@ -1,0 +1,38 @@
+◆　エントリー受付のお知らせ　◆
+<%= @entry.name_kanji %> 様からのエントリーを受け付けました。
+
+◆　エントリー内容　◆
+
+【受付日時】<%= l Time.now, fomrat: :long %>
+
+【氏名（漢字）】<%= @entry.name_kanji %>
+【氏名（ひらがな）】<%= @entry.name_kana %>
+
+【性別】<%= @entry.sexial %>
+【生年月日】<%=l @entry.birthday %>
+
+【在籍高専】<%= @entry.nct %>
+【所属学科】<%= @entry.major %>
+【学年】<%= @entry.grade %>
+
+【連絡先メールアドレス】<%= @entry.email %>
+【Twitter ID】<%= @entry.twitter %>
+【Facebook URL】<%= @entry.facebook %>
+【Github ID】<%= @entry.github %>
+
+【自由記入欄】
+<%= @entry.appeal %>
+
+【Web上にある作品・ブログなど】
+<%= @entry.myproduct %>
+
+【高専ベンチャーをどの経緯で知りましたか？】
+<% @entry.question1.each do |ans| %>
+<% unless ans.blank? %>
+・<%= ans %>
+<% end %>
+<% end %>
+
+【今後のお知らせ】<%= @entry.mail_ok %>
+
+＝ エントリー内容：ここまで ＝

@@ -1,0 +1,10 @@
+$('.control-group').removeClass('error');
+$('#errors_ul').empty();
+
+$('#errors_ul').append('<li>サーバで内部エラーが発生しました。入力項目を確認して、再度エントリーしてください。</li>');
+$('#errors_ul').append('<li>何度試行してもエラーが発生する場合は、お手数ですが<%= link_to '「お問い合わせフォーム」', contact_path %>までご連絡ください。</li>');
+
+$('#error_block').slideDown('fast');
+
+// フォームのトップへスクロール
+$('html,body').animate({ scrollTop: $('a[name=entry_form]').offset().top }, 'fast');
