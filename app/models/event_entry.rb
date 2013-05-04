@@ -5,29 +5,6 @@ class EventEntry
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  # フィールド
-  attr_accessor :name_kanji, :name_kana, :email, :sexial, :birthday,
-    :nct, :grade, :major,
-    :twitter, :github, :facebook,
-    :appeal, :myproduct,
-    :question1,
-    :mail_ok
-
-  # 必須項目
-  validates :name_kanji, :name_kana, :email, :sexial, :birthday,
-    :nct, :grade, :major, :appeal,
-    presence: true
-
-  # 文字量制限
-  validates :name_kanji, :name_kana,
-    length: { maximum: 50 }
-  validates :email, :facebook
-    length: { maximum: 256 }
-  validates :twitter, :github,
-    maximum: 50
-
-  # メールアドレスの不正な形式をはじく
-  validate :email_valid?
 
   NCT_NAMES = [
     "函館工業高等専門学校",
@@ -105,6 +82,34 @@ class EventEntry
     "Facebookの記事を見て知った",
     "その他"
   ]
+
+  # フィールド
+  attr_accessor :name_kanji, :name_kana, :email, :sexial, :birthday,
+    :nct, :grade, :major,
+    :twitter, :github, :facebook,
+    :appeal, :myproduct,
+    :question1,
+    :mail_ok
+
+  # 必須項目
+  validates :name_kanji, :name_kana, :email, :sexial, :birthday,
+    :nct, :grade, :major, :appeal,
+    presence: true
+
+  # 文字量制限
+  validates :name_kanji, :name_kana,
+    length: { maximum: 50 }
+  validates :email, :facebook,
+    length: { maximum: 256 }
+  validates :twitter, :github,
+    length: { maximum: 50 }
+  validates :nct,
+    inclusion: { in: NCT_NAMES }
+  validates :grade,
+    inclusion: { in: GRADES }
+
+  # メールアドレスの不正な形式をはじく
+  validate :email_valid?
 
   def initialize(attributes = {})
     attributes.each do |name, value|
