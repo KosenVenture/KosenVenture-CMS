@@ -1,0 +1,19 @@
+= form_for [:admin, @blog_category], :html => { :class => 'form-horizontal' } do |f|
+  - if @blog_category.errors.any?
+    .alert.alert-block.fade.in.alert-error
+      %h4 エラー
+      %ul
+        - @blog_category.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div{class: "control-group #{'error' unless @blog_category.errors[:name].blank?}"}
+    = f.label '識別名（英数字とアンダースコアのみ）', :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  %div{class: "control-group #{'error' unless @blog_category.errors[:title].blank?}"}
+    = f.label '表示名', :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to 'キャンセル', admin_blog_categories_path, :class => 'btn'
