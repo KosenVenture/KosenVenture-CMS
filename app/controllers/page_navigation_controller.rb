@@ -9,7 +9,7 @@ class PageNavigationController < ApplicationController
     @page_title = @page.title
     # descriptionがセットされている場合はfbのリンクをページに
     @fb_ogp = {
-      title: @page_title ? "#{@page_title}｜#{@site_title}" : @site_title,
+      title: @page_title ? "#{@page_title}｜#{@site_config.title}" : @site_config.title,
       url: @page.path,
       description: @page.description
     } unless @page.description.blank?
