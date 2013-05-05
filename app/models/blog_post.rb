@@ -5,9 +5,9 @@ class BlogPost < ActiveRecord::Base
   belongs_to :author,
     class_name: 'User',
     foreign_key: :author_id
-  #belongs_to :category,
-  #  class_name: 'BlogCategory',
-  #  foreign_key: :category_id
+  belongs_to :category,
+    class_name: 'BlogCategory',
+    foreign_key: :category_id
 
   # Validation
   # 必須項目
@@ -16,7 +16,7 @@ class BlogPost < ActiveRecord::Base
 
   # 関連先の存在チェック
   validate :author_exists?
-  #validate :category_exists?
+  validate :category_exists?
 
   # Scopes
   scope :published, -> { where(published: true) }
@@ -28,12 +28,12 @@ class BlogPost < ActiveRecord::Base
   private
 
   def author_exists?
-    errors.add(:author_id, 'はDBに存在しません．') unless User.exists?(author_id)
+    errors.add(:author_id, 'はDBに存在しません．') unless User.exists?(self.author_id)
   end
 
   def category_exists?
     # 空欄は許可
     # 空欄じゃ無いときカテゴリが存在するかチェック
-    #errors.add(:category_id, 'はDBに存在しません．') unless category_id.nil? || BlogCategory.exists?(category_id)
+    errors.add(:category_id, 'はDBに存在しません．') unless self.category_id.nil? || BlogCategory.exists?(self.category_id)
   end
 end
