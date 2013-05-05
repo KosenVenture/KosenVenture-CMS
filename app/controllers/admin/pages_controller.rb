@@ -43,7 +43,7 @@ class Admin::PagesController < Admin::ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to admin_pages_url, notice: "#{@page.title}を作成しました。" }
+        format.html { redirect_to edit_admin_page_url(@page), notice: "#{@page.title}を作成しました。" }
       else
         format.html { render action: 'new' }
       end
@@ -56,7 +56,7 @@ class Admin::PagesController < Admin::ApplicationController
     respond_to do |format|
       if @page.update_attributes(page_params)
         expire_page @page.path # キャッシュを消去
-        format.html { redirect_to admin_pages_url, notice: "#{@page.title}を更新しました。" }
+        format.html { redirect_to edit_admin_page_url(@page), notice: "#{@page.title}を更新しました。" }
       else
         format.html { render action: 'edit' }
       end
