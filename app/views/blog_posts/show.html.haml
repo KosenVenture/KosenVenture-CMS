@@ -1,0 +1,16 @@
+
+= icon_link_to '一覧へ戻る', news_index_path, 'icon-th-list icon-white',
+  class: 'btn btn-small btn-info'
+
+.row
+  .span12
+    %h3= @post.title
+    = @post.intro
+    %br
+    = @post.body
+
+    %hr{style: "border: 1px solid #E5E5E5;"}
+    投稿日：
+    %span.label= l @post.published_at.to_date, format: :long
+    　カテゴリ：
+    %span.label.label-info= (@post.category ? @post.category.title : 'なし')
