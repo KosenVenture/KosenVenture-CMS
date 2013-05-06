@@ -1,0 +1,48 @@
+= form_for [:admin, @post], html: { id: "BlogPostForm", class: 'form-horizontal' } do |f|
+  - if @post.errors.any?
+    .alert.alert-block.fade.in.alert-error
+      %h4 エラー
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div{class: "control-group #{'error' unless @post.errors[:category_id].blank?}"}
+    = f.label 'カテゴリ', class: 'control-label'
+    .controls
+      = f.collection_select :category_id, @categories, :id, :title,
+        { include_blank: 'なし' }
+
+  %div{class: "control-group #{'error' unless @post.errors[:title].blank?}"}
+    = f.label 'タイトル', class: 'control-label'
+    .controls
+      = f.text_field :title, class: 'input-large'
+
+  %div{class: "control-group #{'error' unless @post.errors[:intro].blank?}"}
+    = f.label '紹介文', class: 'control-label'
+    .controls
+      = f.text_area :intro, class: 'text_field', rows: 2, style: 'width: 80%'
+
+  %div{class: "control-group #{'error' unless @post.errors[:body].blank?}"}
+    = f.label '本文', class: 'control-label'
+    .controls
+      = f.text_area :body, class: 'text_field', rows: 20, style: 'width: 100%'
+
+  %div{class: "control-group #{'error' unless @post.errors[:author_id].blank?}"}
+    = f.label '作成者', class: 'control-label'
+    .controls
+      = f.collection_select :author_id, @users, :id, :real_name
+
+  %div{class: "control-group #{'error' unless @post.errors[:published].blank?}"}
+    = f.label '公開する', class: 'control-label'
+    .controls
+      = f.check_box :published
+
+  %div{class: "control-group #{'error' unless @post.errors[:published_at].blank?}"}
+    = f.label '公開日時', class: 'control-label'
+    .controls
+      = f.datetime_select :published_at, {}, class: 'span2'
+
+  .form-actions
+    = f.submit '保存', class: 'btn btn-primary'
+    = link_to 'プレビュー', '#', class: 'btn btn-info', id: 'BtnPreview'
+    = link_to 'キャンセル', admin_blog_posts_path, class: 'btn'

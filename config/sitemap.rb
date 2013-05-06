@@ -28,6 +28,11 @@ SitemapGenerator::Sitemap.create do
 
   add contact_path, priority: 0.1, changefreq: 'monthly'
 
+  add news_index_path, priority: 0.3, changefreq: 'weekly'
+  BlogPost.published.each do |post|
+    add news_path(post), lastmod: post.updated_at, priority: 0.5, changefreq: 'weekly'
+  end
+
   Page.published.each do |page|
     add page.path, lastmod: page.updated_at, priority: page.priority, changefreq: 'weekly'
   end

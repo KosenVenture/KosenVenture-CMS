@@ -1,0 +1,18 @@
+.page-header
+  %h1 記事カテゴリ一覧
+%table.table.table-striped
+  %thead
+    %tr
+      %th 操作
+      %th カテゴリ名
+      %th カテゴリ表示名
+  %tbody
+    - @blog_categories.each do |blog_category|
+      %tr
+        %td
+          = link_to '削除', admin_blog_category_path(blog_category),
+            method: :delete, data: { confirm: '削除してよろしいですか？' },
+            class: 'btn btn-mini btn-danger'
+          = link_to '編集', edit_admin_blog_category_path(blog_category), class: 'btn btn-mini btn-success'
+        %td= blog_category.name
+        %td= blog_category.title

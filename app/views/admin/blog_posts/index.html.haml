@@ -1,0 +1,26 @@
+.page-header
+  %h1 記事一覧
+%table.table.table-striped
+  %thead
+    %tr
+      %th 操作
+      %th= sortable_link 'タイトル', 'title', params
+      %th= sortable_link '公開', 'published', params
+      %th= sortable_link 'カテゴリ', 'category_id', params
+      %th= sortable_link '作成者', 'author_id', params
+      %th= sortable_link '最終更新日', 'updated_at', params
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td
+          = link_to "表示", news_path(post), class: 'btn btn-mini btn-primary', target: '_blank'
+          = link_to "削除", admin_blog_post_path(post),
+            method: :delete, data: { confirm: "削除してよろしいですか？" }, class: 'btn btn-mini btn-danger'
+          = link_to "編集", edit_admin_blog_post_path(post), class: 'btn btn-mini btn-success'
+        %td= link_to post.title, edit_admin_blog_post_path(post)
+        %td
+          %i{class: "icon-#{post.published ? 'ok' : 'remove'}"}
+        %td= post.category ? post.category.name : 'なし'
+        %td= post.author.real_name if post.author
+        %td= l post.updated_at, format: :short
+
