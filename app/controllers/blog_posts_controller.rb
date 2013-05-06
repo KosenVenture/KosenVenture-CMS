@@ -5,6 +5,11 @@ class BlogPostsController < ApplicationController
 
   def index
     @posts = BlogPost.published.newest_published_order
+
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   def show

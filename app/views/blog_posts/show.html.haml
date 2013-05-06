@@ -5,9 +5,9 @@
 .row
   .span12
     %h3= @post.title
-    = @post.intro
+    = sanitize @post.intro
     %br
-    = @post.body
+    = sanitize @post.body
 
     %hr{style: "border: 1px solid #E5E5E5;"}
     投稿日：

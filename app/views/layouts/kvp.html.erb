@@ -41,7 +41,7 @@
     <% end %>
 
     <link href="/kvp/img/common/favicon.ico" rel="shortcut icon">
-
+    <%= auto_discovery_link_tag :atom, news_index_url(:atom), { title: '高専ベンチャー ニュースフィード' } %>
     <!-- Facebook用 -->
     <meta property="og:type"  content="article" />
     <meta property="og:image" content="http://www.kosen-venture.com/kvp/img/common/facebook_thumb.jpg" />
@@ -169,9 +169,7 @@
               ご不明な点やご要望などがありましたらいつでもご連絡ください。
               <br>
               <br>
-            <%# <?php
-            echo sprintf('<a href="/news/index.rss"><img src="/kvp/img/rss/%02d.png"></a>', mt_rand(1, 50));
-              ?>%>
+              <%= link_to 'RSS', news_index_path(:atom), id: 'rss_icon' %>
             </div>
           </div>
         </div>
