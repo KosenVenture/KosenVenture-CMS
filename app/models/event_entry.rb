@@ -107,6 +107,7 @@ class EventEntry
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?
+  validate :birthday_valid?
 
   def birthday
     Date.new(self.birth_year.to_i, self.birth_month.to_i, self.birth_day.to_i)
@@ -125,6 +126,14 @@ class EventEntry
   def email_valid?
     unless email =~ /^([^@\s]+)[^.]@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i && email !~ /[.]{2}/
       errors.add(:email, 'は不正な形式のメールアドレスです。')
+    end
+  end
+
+  def birthday_valid?
+    check = Date.valid_date?(self.birth_year.to_i, self.birth_month.to_i, self.birth_day.to_i)
+
+    unless !self.birth_year.blank? && check
+      errors.add(:birthday, 'を正しく入力してください。')
     end
   end
 end
