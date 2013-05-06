@@ -45,9 +45,10 @@
       性別
       %span.label.label-important 必須
     .controls
-      %label
+      %span
         = f.radio_button :sexial, '男性', class: 'input-small'
         男性
+      %span
         = f.radio_button :sexial, '女性', class: 'input-small'
         女性
 
@@ -56,20 +57,32 @@
       生年月日
       %span.label.label-important 必須
     .controls
-      = select_year Time.now,
-      { start_year: Time.now.year - 30,
-        end_year: Time.now.year - 15,
-        prefix: 'event_entry',
-        field_name: 'birth_year' },
-      class: 'input-small'
-      = select_month Time.now,
-      { prefix: 'event_entry',
-        field_name: 'birth_month' },
+      .input-append
+        = select_year nil,
+        { start_year: Time.now.year - 30,
+          end_year: Time.now.year - 15,
+          prefix: 'event_entry',
+          field_name: 'birth_year',
+          include_blank: '年' },
         class: 'input-small'
-      = select_day Time.now,
-      { prefix: 'event_entry',
-        field_name: 'birth_day' },
-        class: 'input-small'
+        %span.add-on 年
+
+      .input-append
+        = select_month nil,
+        { prefix: 'event_entry',
+          field_name: 'birth_month',
+          include_blank: '月',
+          use_month_numbers: true },
+          class: 'input-small'
+        %span.add-on 月
+
+      .input-append
+        = select_day nil,
+        { prefix: 'event_entry',
+          field_name: 'birth_day',
+          include_blank: '日' },
+          class: 'input-small'
+        %span.add-on 日
 
   .control-group#nct
     %label.control-label
@@ -135,7 +148,7 @@
 
   .control-group#appeal
     %label.control-label
-      自由記入欄
+      応募動機・意気込み
       %span.label.label-important 必須
     .controls
       = f.text_area :appeal, class: 'input-xxlarge', rows: 8,
@@ -171,5 +184,5 @@
         = f.check_box :mail_ok, {}, '受け取る', '受け取らない'
         「高専ベンチャー」からのお知らせを受け取る
   .form-actions
-    = f.submit 'エントリー', class: 'btn btn-primary',
+    = f.submit 'エントリーする', class: 'btn btn-primary',
       confirm: 'エントリーを送信します。よろしいですか？'
