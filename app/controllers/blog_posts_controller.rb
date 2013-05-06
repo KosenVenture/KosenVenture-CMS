@@ -9,6 +9,7 @@ class BlogPostsController < ApplicationController
     respond_to do |format|
       format.html
       format.atom
+      format.json
     end
   end
 
