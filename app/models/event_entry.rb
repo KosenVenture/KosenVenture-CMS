@@ -87,14 +87,14 @@ class EventEntry
   attr_accessor :name_kanji, :name_kana, :email, :sexial,
     :birth_year, :birth_month, :birth_day,
     :nct, :grade, :major,
-    :twitter, :github, :facebook,
+    :skype, :twitter, :github, :facebook,
     :appeal, :myproduct,
     :question1,
     :mail_ok
 
   # 必須項目
   validates :name_kanji, :name_kana, :email, :sexial,
-    :nct, :grade, :major, :appeal,
+    :nct, :grade, :major, :appeal, :skype,
     presence: true
 
   # 文字量制限

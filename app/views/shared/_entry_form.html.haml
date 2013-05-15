@@ -119,6 +119,15 @@
       = f.email_field :email, class: 'input-xlarge',
         placeholder: '例）kosen.tarou@kosen-venture.com'
 
+  .control-group#skype
+    %label.control-label
+      Skype ID
+      %span.label.label-important 必須
+    .controls
+      = f.text_field :skype, class: 'input-medium',
+        placeholder: '例）KosenVenture'
+      %p.help-block ※Skype面接の際に使用するので、必ずアカウントを用意してください。
+
   .control-group#twitter
     %label.control-label
       Twitter ID
@@ -144,7 +153,6 @@
     .controls
       = f.text_field :github, class: 'input-medium',
         placeholder: '例）KosenVenture'
-      %p.help-block ※アカウントをお持ちでも、知られたく無い場合などは空欄で構いません。
 
   .control-group#appeal
     %label.control-label

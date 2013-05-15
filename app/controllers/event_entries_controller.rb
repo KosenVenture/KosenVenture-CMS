@@ -18,7 +18,7 @@ class EventEntriesController < ApplicationController
     params.require(:event_entry).permit(:name_kanji, :name_kana, :email, :sexial,
     :birth_year, :birth_month, :birth_day,
     :nct, :grade, :major,
-    :twitter, :github, :facebook,
+    :twitter, :github, :facebook, :skype,
     :appeal, :myproduct,
     { question1: [] },
     :mail_ok)
