@@ -23,6 +23,14 @@ KvpCms::Application.routes.draw do
     # 作成と編集でpostとputが変わってしまうので・・・
     post 'page_preview' => 'pages#preview'
     put 'page_preview' => 'pages#preview'
+
+    scope 'file_uploader' do
+      get '(/*path)' => 'file_uploader#index', as: 'file_uploader'
+      post '(/*path)/new_dir' => 'file_uploader#new_dir', as: 'uploader_new_dir'
+      post '(/*path)' => 'file_uploader#upload'
+      delete '(/*path)' => 'file_uploader#destroy'
+    end
+
   end
 
   # 任意のパスへのルーティング
