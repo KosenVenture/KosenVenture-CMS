@@ -247,3 +247,10 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
+
+.fb_iframe_widget,
+.fb_iframe_widget iframe[style],
+.fb_iframe_widget span {
+  width: 100% !important;
+}
+
