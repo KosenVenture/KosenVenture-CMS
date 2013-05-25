@@ -141,7 +141,19 @@
               </ul>
             </div>
             <div class="span4" style="border-right: 1px solid #fff;">
-              <h4>連絡先</h4>
+              <h4>高専ベンチャーをシェア</h4>
+              <br>
+              <div class="block clearfix">
+                <div id="sns_top_tweet"></div>
+                <div id="sns_top_hatena"></div>
+              </div>
+              <div id="sns_fbpage"></div>
+            </div>
+            <div class="span3">
+              <h4>最新情報・連絡先</h4>
+              <small>
+              ご不明な点やご要望などがありましたらいつでもご連絡ください。
+              </small>
               <br>
               Mail:
               <script type="text/javascript">
@@ -160,16 +172,11 @@
               </script>
 
               <br>
-              Twitter: <a href="https://twitter.com/#!/KosenVenture">@KosenVenture</a><br>
+              Twitter: <a href="https://twitter.com/#!/KosenVenture">@KosenVenture</a>
               <br>
+              Facebook: <a href="https://www.facebook.com/kosenventure">Facebookページ</a>
               <br>
-              <br>
-            </div>
-            <div class="span3">
-              ご不明な点やご要望などがありましたらいつでもご連絡ください。
-              <br>
-              <br>
-              <%= link_to 'RSS', news_index_path(:atom), id: 'rss_icon' %>
+              RSS: <%= link_to 'RSS', news_index_path(:atom), id: 'rss_icon' %>
             </div>
           </div>
         </div>
@@ -183,10 +190,11 @@
     <script type="text/javascript">
     // SNS
     $(function() {
+        // 現在のページのシェア
         $('#sns_facebook').socialbutton('facebook_like', {
           //button: 'standard',
           button: 'button_count',
-          url: 'http://www.kosen-venture.com',
+          url: location.href,
           encoded: true,
           show_faces: false,
           action: 'like',
@@ -202,6 +210,31 @@
           related: 'twitter'
         });
         $('#sns_hatena').socialbutton('hatena', {
+          button: 'horizontal',
+          encoded: true
+        });
+        $('#sns_fbpage').socialbutton('facebook_like', {
+          //button: 'button_count',
+          button: 'standard',
+          url: 'https://www.facebook.com/kosenventure',
+          width: '300',
+          encoded: true,
+          show_faces: true,
+          action: 'like',
+          locale: 'ja_JP',
+          font: 'arial',
+          colorscheme: 'dark'
+        });
+        $('#sns_top_tweet').socialbutton('twitter', {
+          url: 'http://www.kosen-venture.com/',
+          button: 'horizontal',
+          encoded: true,
+          text: '高専ベンチャー',
+          lang: 'ja',
+          related: 'twitter'
+        });
+        $('#sns_top_hatena').socialbutton('hatena', {
+          url: 'http://www.kosen-venture.com/',
           button: 'horizontal',
           encoded: true
         });
