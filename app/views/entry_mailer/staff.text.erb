@@ -16,9 +16,9 @@
 【学年】<%= @entry.grade %>
 
 【連絡先メールアドレス】<%= @entry.email %>
-【Twitter ID】http://twitter.com/<%= @entry.twitter %>
+【Twitter ID】<%= 'http://twitter.com/' + @entry.twitter unless @entry.twitter.blank? %>
 【Facebook URL】<%= @entry.facebook %>
-【Github ID】http://github.com/<%= @entry.github %>
+【Github ID】<%= 'http://github.com/' + @entry.github unless @entry.github.blank? %>
 
 【応募動機・意気込み】
 <%= @entry.appeal %>
