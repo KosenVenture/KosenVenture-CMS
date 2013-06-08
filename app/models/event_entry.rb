@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'csv'
 
 class EventEntry
   include ActiveModel::Validations
@@ -120,6 +121,47 @@ class EventEntry
   end
 
   def persisted? ; false ; end
+
+  def to_csv(options = { encoding: 'sjis', row_sep: "\r\n"})
+    CSV.generate(options) do |csv|
+      csv << [
+        '受付日時',
+        '氏名（漢字）',
+        '氏名（ひらがな）',
+        '性別',
+        '生年月日',
+        '在籍高専',
+        '所属学科',
+        '学年',
+        '連絡先メールアドレス',
+        'Twitter ID',
+        'Facebook URL',
+        'Github ID',
+        '応募動機・意気込み',
+        'Web上にある作品・ブログなど',
+        '高専ベンチャーをどの経緯で知りましたか？',
+        '今後のお知らせ'
+      ]
+      csv << [
+        Time.now.strftime("%Y/%m/%d %H:%M"),
+        name_kanji,
+        name_kana,
+        sexial,
+        birthday.strftime("%Y/%m/%d %H:%M"),
+        nct,
+        major,
+        grade,
+        email,
+        'http://twitter.com/' + twitter,
+        facebook,
+        'http://github.com/' + github,
+        appeal,
+        myproduct,
+        question1.delete_if{ |i| i.blank? }.join('/'),
+        mail_ok
+      ]
+    end
+  end
 
   private
 
