@@ -13,6 +13,7 @@ gem 'sitemap_generator'
 gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'cancan'
 
 group :development do
   gem 'better_errors'

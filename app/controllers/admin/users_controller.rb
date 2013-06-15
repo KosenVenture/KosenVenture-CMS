@@ -3,6 +3,7 @@
 class Admin::UsersController < Admin::ApplicationController
   layout 'admin/users'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -63,6 +64,10 @@ class Admin::UsersController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :real_name, :password, :password_confirmation)
+      if current_admin.admin?
+        params.require(:user).permit(:name, :real_name, :password, :password_confirmation, :role)
+      else
+        params.require(:user).permit(:name, :real_name, :password, :password_confirmation)
+      end
     end
 end

@@ -3,6 +3,8 @@
 class Admin::PageCategoriesController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
+  
   before_filter :set_page_category, only: [:show, :edit, :update, :destroy]
 
   # GET /page_categories

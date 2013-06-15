@@ -3,6 +3,8 @@
 class Admin::BlogCategoriesController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
+  
   before_filter :set_blog_category, only: [:show, :edit, :update, :destroy]
 
   def index

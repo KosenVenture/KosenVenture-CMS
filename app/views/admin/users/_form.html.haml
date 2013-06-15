@@ -26,6 +26,12 @@
     .controls
       = f.password_field :password_confirmation, class: 'input-large'
 
+  - if current_admin.admin?
+    %div{class: "control-group #{'error' unless @user.errors[:role].blank?}"}
+      = f.label '権限', class: 'control-label'
+      .controls
+        = f.select :role, User::ROLES
+
   .form-actions
     = f.submit '登録', class: 'btn btn-primary'
     = link_to 'キャンセル', admin_users_path, class: 'btn'

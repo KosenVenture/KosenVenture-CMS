@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Admin::SessionsController < Admin::ApplicationController
-  layout 'admin'
+  layout 'admin_login'
   before_filter :redirect_if_authenticated, only: [ :new, :create ]
 
   def new

@@ -36,6 +36,7 @@ GEM
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
+    cancan (1.6.10)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -168,6 +169,7 @@ DEPENDENCIES
   bcrypt-ruby
   better_errors
   binding_of_caller
+  cancan
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)
