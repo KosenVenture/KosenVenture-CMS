@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  ROLES = %w(admin manager blogger)
+
   # Relation ship
   has_many :pages,
     foreign_key: :author_id,
@@ -12,8 +14,22 @@ class User < ActiveRecord::Base
     uniqueness: true,
     format: { with: /[a-zA-Z0-9_\-]+/ }
   validates :password, presence: { on: :create }
+  validates :role,
+    presence: true
 
   # Scope
-  scope :select_for_list, -> { select('id, real_name') }
+  scope :select_for_list, -> { select('id, real_name, role') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
+
+  def admin?
+    role == 'admin'
+  end
+
+  def manager?
+    role == 'manager'
+  end
+
+  def blogger?
+    role == 'blogger'
+  end
 end
