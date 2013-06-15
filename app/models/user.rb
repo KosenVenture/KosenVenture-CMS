@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   scope :select_for_list, -> { select('id, real_name, role') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
 
+  paginates_per 10
+
   def admin?
     role == 'admin'
   end

@@ -4,7 +4,7 @@ class BlogPostsController < ApplicationController
   layout 'kvp'
 
   def index
-    @posts = BlogPost.published.newest_published_order
+    @posts = BlogPost.published.newest_published_order.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html

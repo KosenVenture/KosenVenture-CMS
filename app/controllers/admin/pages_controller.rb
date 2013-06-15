@@ -14,10 +14,10 @@ class Admin::PagesController < Admin::ApplicationController
     # ソート順の指定に従う
     if params[:order]
       order_str = params[:order] + (params[:desc] == 'true' ? ' DESC' : '')
-      @pages = Page.includes(:author, :category).select_for_index.order(order_str)
+      @pages = Page.includes(:author, :category).select_for_index.order(order_str).page params[:page]
     else
       # 最近更新されたページを上位に表示
-      @pages = Page.includes(:author, :category).select_for_index.newest_updated_order
+      @pages = Page.includes(:author, :category).select_for_index.newest_updated_order.page params[:page]
     end
   end
 

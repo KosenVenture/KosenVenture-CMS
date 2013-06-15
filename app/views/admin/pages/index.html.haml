@@ -32,3 +32,5 @@
         %td= page.author.real_name if page.author
         %td= l page.updated_at, format: :short
 
+= paginate @pages
+

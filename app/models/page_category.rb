@@ -16,4 +16,6 @@ class PageCategory < ActiveRecord::Base
   scope :select_for_list, -> { select('id, title') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
 
+  paginates_per 10
+
 end

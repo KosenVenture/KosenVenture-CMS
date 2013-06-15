@@ -9,7 +9,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.newest_updated_order
+    @users = User.newest_updated_order.page params[:page]
   end
 
   # GET /users/new

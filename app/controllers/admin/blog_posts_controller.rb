@@ -12,10 +12,10 @@ class Admin::BlogPostsController < Admin::ApplicationController
     # ソート順の指定に従う
     if params[:order]
       order_str = params[:order] + (params[:desc] == 'true' ? ' DESC' : '')
-      @posts = BlogPost.includes(:author, :category).select_for_index.order(order_str)
+      @posts = BlogPost.includes(:author, :category).select_for_index.order(order_str).page params[:page]
     else
       # 最近更新されたページを上位に表示
-      @posts = BlogPost.includes(:author, :category).select_for_index.newest_updated_order
+      @posts = BlogPost.includes(:author, :category).select_for_index.newest_updated_order.page params[:page]
     end
   end
 

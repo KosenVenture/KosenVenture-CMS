@@ -17,3 +17,5 @@
     %hr{style: "border: 1px solid #E5E5E5;"}
     カテゴリ：
     %span.label.label-info= (post.category ? post.category.title : 'なし')
+
+= paginate @posts

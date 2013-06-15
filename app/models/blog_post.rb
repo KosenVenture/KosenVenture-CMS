@@ -25,6 +25,7 @@ class BlogPost < ActiveRecord::Base
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :newest_published_order, -> { order('published_at DESC') }
 
+  paginates_per 10
 
   private
 

@@ -14,6 +14,7 @@ gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'cancan'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'

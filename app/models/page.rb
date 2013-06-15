@@ -57,6 +57,8 @@ class Page < ActiveRecord::Base
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :priority_order, -> { order('priority DESC') }
 
+  paginates_per 10
+
   # ページのパスを返す
   def trace_path
     # 親ページがある場合は再帰して取得

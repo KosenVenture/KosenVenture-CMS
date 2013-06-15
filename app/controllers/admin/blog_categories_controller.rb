@@ -8,7 +8,7 @@ class Admin::BlogCategoriesController < Admin::ApplicationController
   before_filter :set_blog_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blog_categories = BlogCategory.newest_updated_order
+    @blog_categories = BlogCategory.newest_updated_order.page params[:page]
   end
 
   def new

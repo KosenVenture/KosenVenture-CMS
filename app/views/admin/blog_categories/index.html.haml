@@ -16,3 +16,5 @@
           = link_to '編集', edit_admin_blog_category_path(blog_category), class: 'btn btn-mini btn-success'
         %td= blog_category.name
         %td= blog_category.title
+
+= paginate @blog_categories
