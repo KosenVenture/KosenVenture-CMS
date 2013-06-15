@@ -3,6 +3,8 @@
 class Admin::BlogPostsController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
+  
   before_filter :set_post, only: [ :show, :edit, :update, :destroy ]
   before_filter :set_associated_record, only: [ :new, :edit, :create, :update ]
 

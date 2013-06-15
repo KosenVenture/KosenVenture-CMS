@@ -3,6 +3,7 @@
 class Admin::UsersController < Admin::ApplicationController
   layout 'admin/users'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users

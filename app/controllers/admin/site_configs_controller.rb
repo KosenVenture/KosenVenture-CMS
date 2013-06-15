@@ -3,6 +3,8 @@
 class Admin::SiteConfigsController < Admin::ApplicationController
   layout 'admin'
   before_filter :authenticate_admin!
+  load_and_authorize_resource
+  
 
   def show
     @config = SiteConfig.first_or_initialize
