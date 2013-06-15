@@ -10,6 +10,9 @@ gem 'rails-i18n'
 gem 'twitter-bootstrap-rails'
 gem 'strong_parameters'
 gem 'sitemap_generator'
+gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'better_errors'

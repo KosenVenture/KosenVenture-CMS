@@ -1,4 +1,6 @@
 $("#BtnPreview").click () ->
+  for instance in CKEDITOR.instances
+    CKEDITOR.instances[instance].updateElement()
   $.ajax {
     type: "POST",
     url: '/admin/page_preview',

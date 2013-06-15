@@ -49,3 +49,10 @@ ja:
         real_name: '表示名'
         password: 'パスワード'
         password_confirmation: 'パスワード確認入力'
+  ckeditor:
+    page_title: "CKEditor ファイルマネージャ"
+    confirm_delete: "ファイルを削除してよろしいですか？"
+    buttons:
+      cancel: "キャンセル"
+      upload: "アップロード"
+      delete: "削除"

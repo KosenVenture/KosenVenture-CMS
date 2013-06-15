@@ -18,14 +18,12 @@
       = f.text_field :title, class: 'input-large'
 
   %div{class: "control-group #{'error' unless @post.errors[:intro].blank?}"}
-    = f.label '紹介文', class: 'control-label'
-    .controls
-      = f.text_area :intro, class: 'text_field', rows: 2, style: 'width: 80%'
+    %b 書き始め
+    = f.cktext_area :intro, ckeditor: { height: 200 }
 
   %div{class: "control-group #{'error' unless @post.errors[:body].blank?}"}
-    = f.label '本文', class: 'control-label'
-    .controls
-      = f.text_area :body, class: 'text_field', rows: 20, style: 'width: 100%'
+    %b 本文
+    = f.cktext_area :body, ckeditor: { height: 500 }
 
   %div{class: "control-group #{'error' unless @post.errors[:author_id].blank?}"}
     = f.label '作成者', class: 'control-label'
@@ -44,5 +42,4 @@
 
   .form-actions
     = f.submit '保存', class: 'btn btn-primary'
-    = link_to 'プレビュー', '#', class: 'btn btn-info', id: 'BtnPreview'
     = link_to 'キャンセル', admin_blog_posts_path, class: 'btn'

@@ -1,4 +1,7 @@
 KvpCms::Application.routes.draw do
+  # CKEditor
+  mount Ckeditor::Engine => '/ckeditor'
+
   # お問い合わせフォーム
   resource :contact, only: [ :show, :create ]
   # エントリーフォーム
