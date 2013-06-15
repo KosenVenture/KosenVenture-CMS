@@ -16,6 +16,9 @@ if Object.const_defined?("Ckeditor")
     config.attachment_file_types = ["doc", "docx", "xls", "xlsx", "odt", "ods", "pdf", "rar", "zip", "tar", "swf"]
 
     # Setup authorization to be run as a before filter
-    # config.authorize_with :cancan
+    config.authorize_with :cancan
+    config.current_user_method do
+      @current_user ||= User.find(session[:admin_id]) if session[:admin_id]
+    end
   end
 end
