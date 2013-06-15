@@ -3,6 +3,7 @@
 class Admin::FileUploaderController < Admin::ApplicationController
   layout 'admin/pages'
   before_filter :authenticate_admin!
+  authorize_resource class: false
   UPLOAD_PATH = Rails.public_path + '/files'
 
   # GET /file_uploader/*path
