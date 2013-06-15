@@ -12,6 +12,9 @@ class EntryMailer < ActionMailer::Base
   def staff(entry)
     @entry = entry
 
+    name = Time.now.strftime("entry_%y%m%d_%H%M.csv")
+    attachments[name] = entry.to_csv.encode('sjis')
+
     mail to: KvpCms::Application::ADMIN_EMAIL,
       subject: "【エントリー】#{@entry.name_kanji} 様がエントリーしました"
   end

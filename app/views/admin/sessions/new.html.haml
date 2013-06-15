@@ -7,18 +7,19 @@
       %i.icon-home
       公開ページへ
 
-.page-header
-  %h3 高専ベンチャーCMS 管理ページ
-  %h2 ログイン
+.row.span5
+  .page-header
+    %h3 高専ベンチャーCMS 管理ページ
+    %h2 ログイン
 
-= form_tag admin_session_path, class: 'form-horizontal' do
-  .control-group
-    = label_tag :name, 'ログイン名', class: 'control-label'
-    .controls
-      = text_field_tag :name, params[:name], class: 'input-medium'
-  .control-group
-    = label_tag :password, 'パスワード', class: 'control-label'
-    .controls
-      = password_field_tag :password, params[:password], class: 'input-medium'
-  .form-actions
-    = submit_tag 'ログイン', class: 'btn btn-primary'
+  = form_tag admin_session_path, class: 'form-horizontal' do
+    = bootstrap_flash
+    .control-group
+      = label_tag :name, 'ログイン名', class: 'control-label'
+      .controls
+        = text_field_tag :name, params[:name], class: 'input-medium'
+    .control-group
+      = label_tag :password, 'パスワード', class: 'control-label'
+      .controls
+        = password_field_tag :password, params[:password], class: 'input-medium'
+    = submit_tag 'ログイン', class: 'btn btn-primary pull-right'

@@ -16,12 +16,13 @@
 【学年】<%= @entry.grade %>
 
 【連絡先メールアドレス】<%= @entry.email %>
-【Skype ID】<%= @entry.skype %>
-【Twitter ID】<%= @entry.twitter %>
-【Facebook URL】<%= @entry.facebook %>
-【Github ID】<%= @entry.github %>
 
-【自由記入欄】
+【Skype ID】<%= @entry.skype %>
+【Twitter ID】<%= 'http://twitter.com/' + @entry.twitter unless @entry.twitter.blank? %>
+【Facebook URL】<%= @entry.facebook %>
+【Github ID】<%= 'http://github.com/' + @entry.github unless @entry.github.blank? %>
+
+【応募動機・意気込み】
 <%= @entry.appeal %>
 
 【Web上にある作品・ブログなど】
