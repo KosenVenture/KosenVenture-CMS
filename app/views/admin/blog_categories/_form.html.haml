@@ -1,3 +1,8 @@
+= link_to admin_blog_categories_path, class: 'btn btn-info' do
+  %li.icon-white.icon-list
+  一覧に戻る
+%hr
+
 = form_for [:admin, @blog_category], :html => { :class => 'form-horizontal' } do |f|
   - if @blog_category.errors.any?
     .alert.alert-block.fade.in.alert-error

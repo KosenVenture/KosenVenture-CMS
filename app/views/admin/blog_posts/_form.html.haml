@@ -1,3 +1,8 @@
+= link_to admin_blog_posts_path, class: 'btn btn-info' do
+  %li.icon-white.icon-list
+  一覧に戻る
+%hr
+
 = form_for [:admin, @post], html: { id: "BlogPostForm", class: 'form-horizontal' } do |f|
   - if @post.errors.any?
     .alert.alert-block.fade.in.alert-error
@@ -15,7 +20,7 @@
   %div{class: "control-group #{'error' unless @post.errors[:title].blank?}"}
     = f.label 'タイトル', class: 'control-label'
     .controls
-      = f.text_field :title, class: 'input-large'
+      = f.text_field :title, class: 'input-xxlarge'
 
   %div{class: "control-group #{'error' unless @post.errors[:intro].blank?}"}
     %b 書き始め

@@ -25,8 +25,34 @@
             .container.nav-collapse
               %ul.nav
                 %li= icon_link_to "ダッシュボード", admin_path, 'icon-white icon-home'
-                %li= icon_link_to "ページ管理", admin_pages_path, 'icon-white icon-file'
-                %li= icon_link_to "記事管理", admin_blog_posts_path, 'icon-white icon-pencil'
+
+                %li.dropdown
+                  = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+                    %i.icon-white.icon-file
+                    ページ管理
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li.nav-header ページ
+                    %li= icon_link_to "一覧", admin_pages_path, 'icon-list'
+                    %li= icon_link_to "作成", new_admin_page_path, 'icon-plus'
+                    %li.divider
+                    %li.nav-header カテゴリ
+                    %li= icon_link_to "一覧", admin_page_categories_path, 'icon-list'
+                    %li= icon_link_to "作成", new_admin_page_category_path, 'icon-plus'
+
+                %li.dropdown
+                  = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+                    %i.icon-white.icon-pencil
+                    ニュース管理
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li.nav-header ニュース
+                    %li= icon_link_to "一覧", admin_blog_posts_path, 'icon-list'
+                    %li= icon_link_to "作成", new_admin_blog_post_path, 'icon-plus'
+                    %li.nav-header カテゴリ
+                    %li= icon_link_to "一覧", admin_blog_categories_path, 'icon-list'
+                    %li= icon_link_to "作成", new_admin_blog_category_path, 'icon-plus'
+
                 %li= icon_link_to "ファイル管理", admin_file_uploader_path, 'icon-white icon-folder-close'
                 %li= icon_link_to 'ユーザ管理', admin_users_path, 'icon-white icon-user'
                 %li= icon_link_to 'サイト管理', admin_site_config_path, 'icon-white icon-globe'
@@ -35,36 +61,7 @@
 
     .container-fluid
       .row-fluid
-        .span2
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header ページ管理
-              %li= icon_link_to "一覧", admin_pages_path, 'icon-list'
-              %li= icon_link_to "作成", new_admin_page_path, 'icon-pencil'
-
-              %li.nav-header ページカテゴリ管理
-              %li= icon_link_to "一覧", admin_page_categories_path, 'icon-list'
-              %li= icon_link_to "作成", new_admin_page_category_path, 'icon-plus'
-
-              %li.nav-header 記事管理
-              %li= icon_link_to "一覧", admin_blog_posts_path, 'icon-list'
-              %li= icon_link_to "作成", new_admin_blog_post_path, 'icon-pencil'
-
-              %li.nav-header 記事カテゴリ管理
-              %li= icon_link_to "一覧", admin_blog_categories_path, 'icon-list'
-              %li= icon_link_to "作成", new_admin_blog_category_path, 'icon-plus'
-
-              %li.nav-header ファイル管理
-              %li= icon_link_to "管理", admin_file_uploader_path, 'icon-folder-close'
-
-              %li.nav-header ユーザ管理
-              %li= icon_link_to "一覧", admin_users_path, 'icon-list'
-              %li= icon_link_to "登録", new_admin_user_path, 'icon-plus'
-
-              %li.nav-header サイト管理
-              %li= icon_link_to "サイト設定", admin_site_config_path, 'icon-cog'
-
-        .span10
+        .span12
           = bootstrap_flash
           = content_for?(:main) ? yield(:main) : yield
 

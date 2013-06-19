@@ -1,3 +1,8 @@
+= link_to admin_pages_path, class: 'btn btn-info' do
+  %li.icon-white.icon-list
+  一覧に戻る
+%hr
+
 = form_for [:admin, @page], html: { id: "PageForm", class: 'form-horizontal' } do |f|
   - if @page.errors.any?
     .alert.alert-block.fade.in.alert-error
@@ -26,7 +31,7 @@
   %div{class: "control-group #{'error' unless @page.errors[:title].blank?}"}
     = f.label 'タイトル', class: 'control-label'
     .controls
-      = f.text_field :title, class: 'input-large'
+      = f.text_field :title, class: 'input-xxlarge'
 
   %div{class: "control-group #{'error' unless @page.errors[:description].blank?}"}
     = f.label '説明文', class: 'control-label'
