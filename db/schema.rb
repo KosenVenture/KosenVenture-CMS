@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20130615164712) do
   create_table "page_categories", :force => true do |t|
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pages", :force => true do |t|
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20130615164712) do
     t.integer  "author_id"
     t.boolean  "published"
     t.datetime "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "parent_id"
     t.text     "keywords"
     t.float    "priority"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20130615164712) do
     t.string   "name"
     t.string   "real_name"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "role"
   end
 
