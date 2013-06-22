@@ -51,7 +51,7 @@ class Page < ActiveRecord::Base
   validate :uniq_path?
 
   # Scopes
-  scope :published, -> { where(published: true) }
+  scope :published, -> { where(published: true).where('published_at <= ?', Time.now) }
   scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id depth priority updated_at path).join(',')) }
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :priority_order, -> { order('priority DESC') }
