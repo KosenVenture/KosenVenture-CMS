@@ -20,8 +20,8 @@
   %div{class: "control-group #{'error' unless @page.errors[:parent_id].blank?}"}
     = f.label '親ページ', class: 'control-label'
     .controls
-      = f.collection_select :parent_id, @pages, :id, :title,
-        { include_blank: 'なし' }
+      = f.collection_select :parent_id, @pages, :id, :tree_title,
+        { include_blank: 'なし' }, { class: 'input-xxlarge'}
 
   %div{class: "control-group #{'error' unless @page.errors[:name].blank?}"}
     = f.label 'ページ名', class: 'control-label'
@@ -68,7 +68,7 @@
   %div{class: "control-group #{'error' unless @page.errors[:published_at].blank?}"}
     = f.label '公開日時', class: 'control-label'
     .controls
-      = f.datetime_select :published_at, {}, class: 'span2'
+      = f.datetime_select :published_at, {}, class: 'input-small'
 
   .form-actions
     = f.submit '保存', class: 'btn btn-primary'

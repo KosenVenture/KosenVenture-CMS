@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Page < ActiveRecord::Base
-  before_validation :set_path
+  before_validation :set_path, :set_depth
 
   # Relation ship
   belongs_to :author,
@@ -52,10 +52,10 @@ class Page < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(published: true) }
-  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id priority updated_at path).join(',')) }
-  scope :select_for_list, -> { select('id, title, parent_id') }
+  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id depth priority updated_at path).join(',')) }
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :priority_order, -> { order('priority DESC') }
+  scope :for_list, -> { select('id, title, parent_id, depth, path').order('path ASC') }
 
   paginates_per 10
 
@@ -63,6 +63,22 @@ class Page < ActiveRecord::Base
   def trace_path
     # 親ページがある場合は再帰して取得
     (self.parent ? self.parent.trace_path : '') + '/' + self.name
+  end
+
+  # ページの深さを返す
+  def trace_depth
+    count = 0
+    p = self
+    while p = p.parent do
+      count += 1
+    end
+
+    return count
+  end
+
+  # 選択ボックスでツリー状に表示する
+  def tree_title
+    "#{self.depth.times.map{'　'}.join}■#{title} (#{self.path})"
   end
 
   private
@@ -93,5 +109,9 @@ class Page < ActiveRecord::Base
 
   def set_path
     self.path = self.trace_path
+  end
+
+  def set_depth
+    self.depth = self.trace_depth
   end
 end

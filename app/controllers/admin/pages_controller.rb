@@ -88,7 +88,7 @@ class Admin::PagesController < Admin::ApplicationController
 
     # ページ作成，編集に関連するデータの読み込み
     def set_associated_record
-      @pages = Page.select_for_list.newest_updated_order
+      @pages = Page.for_list
       @categories = PageCategory.select_for_list.newest_updated_order
       @users = User.select_for_list.newest_updated_order
     end
