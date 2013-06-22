@@ -5,8 +5,17 @@ class ApplicationController < ActionController::Base
 
   before_filter :load_site_config
 
+  # ActiveRecord::RecordNotFound のときは、404エラーページに
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
   private
   def load_site_config
     @site_config = SiteConfig.first
+  end
+
+  # 404ページを表示する
+  def render_404
+    # ページが見つからない場合は404
+    render 'shared/404', status: '404'
   end
 end

@@ -27,8 +27,5 @@ class PageNavigationController < ApplicationController
       # 空のときはindexページを探す
       @page = Page.published.find_by_path!('/index')
     end
-  rescue
-    # ページが見つからない場合は404
-    render 'shared/404', status: '404'
   end
 end
