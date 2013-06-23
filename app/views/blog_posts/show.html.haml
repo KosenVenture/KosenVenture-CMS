@@ -2,9 +2,9 @@
 = icon_link_to '一覧へ戻る', news_index_path, 'icon-th-list icon-white',
   class: 'btn btn-small btn-info'
 
+%h3= @post.title
 .row
-  .span12
-    %h3= @post.title
+  .span9
     = sanitize @post.intro
     %br
     = sanitize @post.body
@@ -14,3 +14,6 @@
     %span.label= l @post.published_at.to_date, format: :long
     　カテゴリ：
     %span.label.label-info= (@post.category ? @post.category.title : 'なし')
+
+  .span3
+    = render partial: 'categories'

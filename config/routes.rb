@@ -7,7 +7,20 @@ KvpCms::Application.routes.draw do
   # エントリーフォーム
   resource :event_entry, only: [ :create ]
   # ニュース
-  resources :news, only: [ :show, :index ], controller: 'blog_posts'
+  resources :news, only: [ :show, :index ], controller: 'blog_posts' do
+    collection do
+      # カテゴリ別表示
+      get '/categories/:category_name', constraints: {category_name: /[a-zA-Z0-9_\-]+/},
+        controller: 'blog_posts',
+        action: 'index',
+        as: 'category'
+      # 月別表示
+      get '/:year/:month', constraints: {year: /[0-9]{4}/, month: /[0-1][0-9]/},
+        controller: 'blog_posts',
+        action: 'index',
+        as: 'monthly'
+    end
+  end
 
   # 管理画面
   get '/admin/login' => 'admin/sessions#new', as: 'admin_login'

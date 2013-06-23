@@ -1,21 +1,25 @@
 %h3 ニュース
 %p 高専ベンチャープロジェクトの最近の活動に関する情報をお届けします。
 
-- @posts.each do |post|
-  .well.blog
-    %blockquote
-      %p
-        %strong= link_to post.title, news_path(post)
-        %span.label= l post.published_at.to_date, format: :long
-      %small= "by #{post.author.real_name}"
-    %hr{style: "border: 1px solid #E5E5E5;"}
-    .post-body
-      = sanitize post.intro
-    %br
-    = icon_link_to "続きを読む", news_path(post), 'icon-chevron-right icon-white',
-        class: 'btn btn-small btn-info'
-    %hr{style: "border: 1px solid #E5E5E5;"}
-    カテゴリ：
-    %span.label.label-info= (post.category ? post.category.title : 'なし')
+.row
+  .span9
+    - @posts.each do |post|
+      .well.blog
+        %blockquote
+          %p
+            %strong= link_to post.title, news_path(post)
+            %span.label= l post.published_at.to_date, format: :long
+          %small= "by #{post.author.real_name}"
+        %hr{style: "border: 1px solid #E5E5E5;"}
+        .post-body
+          = sanitize post.intro
+        %br
+        = icon_link_to "続きを読む", news_path(post), 'icon-chevron-right icon-white',
+            class: 'btn btn-small btn-info'
+        %hr{style: "border: 1px solid #E5E5E5;"}
+        カテゴリ：
+        %span.label.label-info= (post.category ? post.category.title : 'なし')
 
-= paginate @posts
+    = paginate @posts
+  .span3
+    = render partial: 'categories'

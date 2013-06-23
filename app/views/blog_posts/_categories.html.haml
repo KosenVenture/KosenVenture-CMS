@@ -1,0 +1,18 @@
+%ul.nav.nav-list
+  %li.nav-header カテゴリ
+  %li
+    = link_to news_index_path do
+      %span.label.label-success 全ての記事
+      %span.badge= @all_count
+  - @categories.each do |cat|
+    %li
+      = link_to category_news_index_path(cat.name) do
+        %span.label.label-info= cat.title
+        %span.badge= cat.cnt
+
+  %li.nav-header バックナンバー
+  - @monthly.each do |k, v|
+    %li
+      = link_to monthly_news_index_path(k.year, "%02d"%k.month) do
+        = l k, format: '%Y年%m月'
+        %span.badge= v.count

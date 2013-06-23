@@ -19,11 +19,18 @@ class BlogPost < ActiveRecord::Base
   validate :category_exists?
 
   # Scopes
-  scope :published, -> { where(published: true) }
+  scope :publishing, -> { where("published_at <= ?", Time.now).where(published: true).order('published_at DESC') }
   scope :select_for_index, -> { select(%w(id title published category_id author_id updated_at).join(',')) }
   scope :select_for_list, -> { select('id, title') }
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :newest_published_order, -> { order('published_at DESC') }
+  scope :group_by_category,
+    -> { select('blog_categories.name, blog_categories.title, COUNT(blog_posts.title) as cnt').group('category_id').joins(:category).order('cnt DESC') }
+
+  # 月別の公開された記事
+  def self.monthly
+    self.publishing.select('published_at').group_by{|i| i.published_at.beginning_of_month }
+  end
 
   paginates_per 10
 
