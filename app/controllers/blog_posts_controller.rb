@@ -49,7 +49,7 @@ class BlogPostsController < ApplicationController
 private
 
   def load_categories
-    @categories = BlogPost.publishing.group_by_category
+    @categories = BlogPost.publishing.except(:order).group_by_category
     @monthly = BlogPost.monthly.sort.reverse
     @all_count = BlogPost.publishing.count
   end

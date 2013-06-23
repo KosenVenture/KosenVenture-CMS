@@ -15,5 +15,14 @@
     　カテゴリ：
     %span.label.label-info= (@post.category ? @post.category.title : 'なし')
 
+    %ul.pager
+      - if p = @post.prev
+        %li.previous
+          = link_to news_path(p) do
+            &larr;前の記事へ
+      - if n = @post.next
+        %li.next
+          = link_to news_path(n) do
+            &rarr;次の記事へ
   .span3
     = render partial: 'categories'
