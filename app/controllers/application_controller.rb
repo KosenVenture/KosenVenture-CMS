@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   # 404ページを表示する
   def render_404
     # ページが見つからない場合は404
-    render 'shared/404', status: '404'
+    render 'shared/404.html', status: '404'
   end
 end
