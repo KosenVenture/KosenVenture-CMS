@@ -1,0 +1,15 @@
+%h3= @post.title
+.row
+  .span9
+    = sanitize @post.intro
+    %br
+    = sanitize @post.body
+
+    %hr{style: "border: 1px solid #E5E5E5;"}
+    投稿日：
+    %span.label= l @post.published_at.to_date, format: :long
+    　カテゴリ：
+    %span.label.label-info= (@post.category ? @post.category.title : 'なし')
+
+  .span3
+

@@ -39,6 +39,8 @@ KvpCms::Application.routes.draw do
     # 作成と編集でpostとputが変わってしまうので・・・
     post 'page_preview' => 'pages#preview'
     put 'page_preview' => 'pages#preview'
+    post 'blog_preview' => 'BlogPosts#preview'
+    put 'blog_preview' => 'BlogPosts#preview'
 
     scope 'file_uploader' do
       get '(/*path)' => 'file_uploader#index', as: 'file_uploader'
