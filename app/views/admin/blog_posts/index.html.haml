@@ -28,7 +28,7 @@
         %td= link_to post.title, edit_admin_blog_post_path(post)
         %td
           %i{class: "icon-#{post.published ? 'ok' : 'remove'}"}
-        %td= post.category ? post.category.name : 'なし'
+        %td= post.category ? post.category.title : 'なし'
         %td= post.author.real_name if post.author
         %td= l post.updated_at, format: :short
 
