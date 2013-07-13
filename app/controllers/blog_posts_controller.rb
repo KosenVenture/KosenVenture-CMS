@@ -28,7 +28,7 @@ class BlogPostsController < ApplicationController
     end
 
     # 標準
-    @posts = @posts.publishing.page(params[:page]).per(5)
+    @posts = @posts.publishing.page(params[:page])
 
     @fb_ogp = {
       title: @page_title ? "#{@page_title}｜#{@site_config.title}" : @site_config.title,
@@ -37,9 +37,9 @@ class BlogPostsController < ApplicationController
     }
 
     respond_to do |format|
-      format.html
-      format.atom
-      format.json
+      format.html { @posts = @posts.per(5) }
+      format.atom { @posts = @posts.per(20) }
+      format.json { @posts = @posts.per(10) }
     end
   end
 
