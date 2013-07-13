@@ -15,7 +15,7 @@ class Admin::BlogPostsController < Admin::ApplicationController
       @posts = BlogPost.includes(:author, :category).select_for_index.order(order_str).page params[:page]
     else
       # 最近更新されたページを上位に表示
-      @posts = BlogPost.includes(:author, :category).select_for_index.newest_updated_order.page params[:page]
+      @posts = BlogPost.includes(:author, :category).select_for_index.newest_published_order.page params[:page]
     end
   end
 
