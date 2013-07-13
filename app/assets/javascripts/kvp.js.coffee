@@ -9,7 +9,10 @@ rss_icon.append('<img src="/kvp/img/rss/' +  ( '0' + (Math.floor(Math.random() *
 
 # News list
 if $('div#news_list').length != 0
-	$.getJSON "/news.json", (posts) ->
+  category = $('div#news_list').data("category")
+  path = if category then "/news/categories/#{category}.json" else "/news.json"
+
+	$.getJSON path, (posts) ->
 		$('div#news_list').append('<ul class="unstyled"></ul>')
 		list_dom = $('div#news_list > ul')
 		for i of posts
