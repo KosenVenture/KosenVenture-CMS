@@ -13,7 +13,7 @@ atom_feed(language: 'ja-JP', root_url: root_url, id: root_url, url: news_index_u
       updated: post.updated_at) do |entry|
 
       entry.title post.title
-      entry.content post.intro + '<br />' + post.body, type: :html
+      entry.content post.intro + "<br /><a href=\"#{news_url(post)}\">続きを読む&gt;&gt;</a>", type: :html
       entry.author {|author| author.name(post.author.real_name) }
     end
   end

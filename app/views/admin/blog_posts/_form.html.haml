@@ -47,4 +47,5 @@
 
   .form-actions
     = f.submit '保存', class: 'btn btn-primary'
+    = link_to 'プレビュー', '#', class: 'btn btn-info', id: 'BtnBlogPreview'
     = link_to 'キャンセル', admin_blog_posts_path, class: 'btn'

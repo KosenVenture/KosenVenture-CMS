@@ -44,10 +44,9 @@
       = f.text_area :keywords, class: 'text_field', rows: 2, style: 'width: 80%'
 
   %div{class: "control-group #{'error' unless @page.errors[:body].blank?}"}
-    = f.label '本文', class: 'control-label', title: 'ページの本文をHTMLで記述します。'
-    .controls
-      = f.text_area :body, class: 'text_field', rows: 20, style: 'width: 100%'
-      %pre{id: 'body_editor', style: 'position: relative; height: 600px; padding: 0'}
+    %b 本文
+    = f.text_area :body, class: 'text_field', rows: 20, style: 'width: 100%'
+    %pre{id: 'body_editor', style: 'position: relative; height: 600px; padding: 0'}
 
   %div{class: "control-group #{'error' unless @page.errors[:author_id].blank?}"}
     = f.label '作成者', class: 'control-label', title: 'ページの作成者を選択します。'

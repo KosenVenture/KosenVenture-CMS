@@ -1,12 +1,30 @@
 
 # Page Preview
 $("#BtnPreview").click () ->
-  for instance in CKEDITOR.instances
+  for instance of CKEDITOR.instances
     CKEDITOR.instances[instance].updateElement()
   $.ajax {
     type: "POST",
     url: '/admin/page_preview',
     data: $("#PageForm").serialize(),
+    success: (result) ->
+      if result
+        w = window.open ''
+        w.document.open
+        w.document.write result
+        w.document.close
+      else
+        alert('プレビューの読み込みに失敗しました。')
+  }
+
+# BlogPreview
+$("#BtnBlogPreview").click () ->
+  for instance of CKEDITOR.instances
+    CKEDITOR.instances[instance].updateElement()
+  $.ajax {
+    type: "POST",
+    url: '/admin/blog_preview',
+    data: $("#BlogPostForm").serialize(),
     success: (result) ->
       if result
         w = window.open ''
