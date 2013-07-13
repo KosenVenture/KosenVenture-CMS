@@ -3,6 +3,8 @@
 
 .row
   .span9
+    - if @posts.blank?
+      %strong 記事はありません。
     - @posts.each do |post|
       .well.blog
         %blockquote
