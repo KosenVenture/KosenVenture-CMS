@@ -28,7 +28,6 @@ ja:
   activerecord:
     models:
       page: 'ページ'
-      page_category: 'ページカテゴリ'
       user: '管理ユーザ'
     attributes:
       page:
@@ -39,11 +38,7 @@ ja:
         published: '公開する'
         published_ad: '公開日'
         parent_id: '親ページ'
-        category_id: 'カテゴリ'
         author_id: '作成者'
-      page_category:
-        name: 'カテゴリ名'
-        title: 'カテゴリ表示名'
       user:
         name: 'ログイン名'
         real_name: '表示名'

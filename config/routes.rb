@@ -30,7 +30,6 @@ KvpCms::Application.routes.draw do
     resource :session, only: [ :new, :create, :destroy ]
 
     resources :pages, except: [ :show ]
-    resources :page_categories, except: [ :show ]
     resources :users, except: [ :show ]
     resource :site_config, only: [ :show, :create, :update ]
     resources :blog_posts, except: [ :show ]

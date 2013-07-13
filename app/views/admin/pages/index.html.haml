@@ -18,7 +18,6 @@
         %br
         = sortable_link 'タイトル', 'title', params
       %th= sortable_link '公開', 'published', params
-      %th= sortable_link 'カテゴリ', 'category_id', params
       %th= sortable_link '作成者', 'author_id', params
       %th= sortable_link '最終更新日', 'updated_at', params
   %tbody
@@ -36,7 +35,6 @@
           = page.title
         %td
           %i{class: "icon-#{page.published ? 'ok' : 'remove'}"}
-        %td= page.category ? page.category.name : 'なし'
         %td= page.author.real_name if page.author
         %td= l page.updated_at, format: :short
 

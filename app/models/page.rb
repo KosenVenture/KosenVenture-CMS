@@ -7,9 +7,6 @@ class Page < ActiveRecord::Base
   belongs_to :author,
     class_name: 'User',
     foreign_key: :author_id
-  belongs_to :category,
-    class_name: 'PageCategory',
-    foreign_key: :category_id
 
   # ページのツリー構造
   # 親ページ
@@ -46,13 +43,12 @@ class Page < ActiveRecord::Base
 
   # 関連先の存在チェック
   validate :author_exists?
-  validate :category_exists?
   validate :parent_check
   validate :uniq_path?
 
   # Scopes
   scope :published, -> { where(published: true).where('published_at <= ?', Time.now) }
-  scope :select_for_index, -> { select(%w(id name title published category_id author_id parent_id depth priority updated_at path).join(',')) }
+  scope :select_for_index, -> { select(%w(id name title published author_id parent_id depth priority updated_at path).join(',')) }
   scope :newest_updated_order, -> { order('updated_at DESC') }
   scope :priority_order, -> { order('priority DESC') }
   scope :for_list, -> { select('id, title, parent_id, depth, path').order('path ASC') }
@@ -87,11 +83,6 @@ class Page < ActiveRecord::Base
     errors.add(:author_id, 'はDBに存在しません．') unless User.exists?(author_id)
   end
 
-  def category_exists?
-    # 空欄は許可
-    # 空欄じゃ無いときカテゴリが存在するかチェック
-    errors.add(:category_id, 'はDBに存在しません．') unless category_id.nil? || PageCategory.exists?(category_id)
-  end
 
   def parent_check
     unless parent_id.nil?

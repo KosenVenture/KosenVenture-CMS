@@ -8,7 +8,6 @@ class Ability
     elsif user.manager?
         can :manage, :file_uploader
         can :manage, Page
-        can :manage, PageCategory
         can :manage, BlogCategory
         can :manage, BlogPost
         can :access, :ckeditor

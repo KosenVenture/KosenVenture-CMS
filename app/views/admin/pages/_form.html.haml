@@ -11,12 +11,6 @@
         - @page.errors.full_messages.each do |msg|
           %li= msg
 
-  %div{class: "control-group #{'error' unless @page.errors[:category_id].blank?}"}
-    = f.label 'カテゴリ', class: 'control-label'
-    .controls
-      = f.collection_select :category_id, @categories, :id, :title,
-        { include_blank: 'なし' }
-
   %div{class: "control-group #{'error' unless @page.errors[:parent_id].blank?}"}
     = f.label '親ページ', class: 'control-label', title: 'URL階層で親となるページを選択します。'
     .controls

@@ -1,28 +1,6 @@
 - content_for :title do
   ダッシュボード
 
-- content_for :sidebar do
-  %li.nav-header ページ管理
-  %li= icon_link_to "一覧", admin_pages_path, 'icon-list'
-  %li= icon_link_to "作成", new_admin_page_path, 'icon-pencil'
 
-  %li.nav-header ページカテゴリ管理
-  %li= icon_link_to "一覧", admin_page_categories_path, 'icon-list'
-  %li= icon_link_to "作成", new_admin_page_category_path, 'icon-plus'
-
-  %li.nav-header 記事管理
-  %li= icon_link_to "一覧", admin_blog_posts_path, 'icon-list'
-  %li= icon_link_to "作成", new_admin_blog_post_path, 'icon-pencil'
-
-  %li.nav-header 記事カテゴリ管理
-  %li= icon_link_to "一覧", admin_blog_categories_path, 'icon-list'
-  %li= icon_link_to "作成", new_admin_blog_category_path, 'icon-plus'
-
-  %li.nav-header ユーザ管理
-  %li= icon_link_to "一覧", admin_users_path, 'icon-list'
-  %li= icon_link_to "登録", new_admin_user_path, 'icon-plus'
-
-  %li.nav-header サイト設定
-  %li= icon_link_to "サイト設定", admin_site_config_path, 'icon-cog'
 .page-header
   %h1 高専ベンチャー 管理ページ
