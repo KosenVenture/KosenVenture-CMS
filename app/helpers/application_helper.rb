@@ -2,12 +2,20 @@
 
 module ApplicationHelper
   def site_title
+    # ページのときは自動セット
+    if @page
+      @page_title = @page.title
+    end
     @page_title.blank? ? @site_config.title : "#{@page_title}｜#{@site_config.title}"
   end
 
   def site_description
     if @page.nil? || @page.description.blank?
-      @site_config.description
+      if @page_description
+        @page_description
+      else
+        @site_config.description
+      end
     else
       @page.description
     end

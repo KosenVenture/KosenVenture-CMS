@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <% if /iPad/ =~ request.env["HTTP_USER_AGENT"] %>
-      <meta name="viewport" content="width=1024px, initial-scale=0.77, maximum-scale=2.0">
+    <meta name="viewport" content="width=1024px, initial-scale=0.77, maximum-scale=2.0" />
     <% else %>
-      <meta name="viewport" content="width=1024px, initial-scale=0.5, maximum-scale=1.0">
+    <meta name="viewport" content="width=1024px, initial-scale=0.5, maximum-scale=1.0" />
     <% end %>
 
     <title><%= site_title %></title>
     <meta name="description" content="<%= site_description %>" />
     <meta name="keywords" content="<%= site_keywords %>" />
+    <!-- OpenGraph -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@KosenVenture" />
+    <meta property="og:site_name" content="<%= @site_config.title %>" />
+    <meta property="og:image" content="http://www.kosen-venture.com/kvp/img/common/facebook_thumb.jpg" />
+    <meta property="fb:admins" content="100000748651715" />
+    <meta property="og:title" content="<%= site_title %>" />
+    <meta property="og:description" content="<%= site_description %>" />
+    <meta property="og:type"  content="article" />
+    <% if @fb_ogp %>
+    <meta property="og:url" content="http://www.kosen-venture.com<%= @fb_ogp[:url] %>" />
+    <% end %>
+    <!-- end -->
 
     <%= csrf_meta_tags %>
 
@@ -42,21 +55,6 @@
 
     <link href="/kvp/img/common/favicon.ico" rel="shortcut icon">
     <%= auto_discovery_link_tag :atom, news_index_url(:atom), { title: '高専ベンチャー ニュースフィード' } %>
-    <!-- Facebook用 -->
-    <meta property="og:type"  content="article" />
-    <meta property="og:image" content="http://www.kosen-venture.com/kvp/img/common/facebook_thumb.jpg" />
-    <meta property="og:site_name" content="高専ベンチャー" />
-    <meta property="fb:admins" content="100000748651715" />
-    <% unless @fb_ogp %>
-      <meta property="og:title" content="高専ベンチャー" />
-      <meta property="og:url"   content="http://www.kosen-venture.com/" />
-      <meta property="og:description" content="高専ベンチャーは、高専生の優れた専門性や技術に対する純粋さを世界に発信していくことで、高専生が都内や海外で活躍する機会と選択肢を提供することをミッションとしています。" />
-    <% else %>
-      <meta property="og:title" content="<%= @fb_ogp[:title] %>" />
-      <meta property="og:url"   content="http://www.kosen-venture.com<%= @fb_ogp[:url] %>" />
-      <meta property="og:description" content="<%= @fb_ogp[:description] %>" />
-    <% end %>
-    <!-- end -->
 
   </head>
   <body>

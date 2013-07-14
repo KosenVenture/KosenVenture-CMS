@@ -6,11 +6,15 @@ class ContactsController < ApplicationController
   # GET /contact
   def show
     @page_title = 'お問い合わせ'
+    @page_description = "高専ベンチャーへのお問い合わせはこちらから"
+
     @contact = Contact.new
   end
 
   # POST /contact
   def create
+    @page_title = 'お問い合わせ'
+    @page_description = "高専ベンチャーへのお問い合わせはこちらから"
     @contact = Contact.new(contact_params)
 
     if @contact.valid?

@@ -6,6 +6,8 @@ class BlogPostsController < ApplicationController
 
   def index
     @page_title = "ニュース"
+    @page_description = "高専ベンチャーの最新情報をお届けします。"
+
     # カテゴリ別表示
     if params[:category_name]
       category = BlogCategory.find_by_name!(params[:category_name])
@@ -29,11 +31,8 @@ class BlogPostsController < ApplicationController
 
     # 標準
     @posts = @posts.publishing.page(params[:page])
-
     @fb_ogp = {
-      title: @page_title ? "#{@page_title}｜#{@site_config.title}" : @site_config.title,
-      url: news_index_path,
-      description: "高専ベンチャーの最新情報をお届けします。"
+      url: news_index_path
     }
 
     respond_to do |format|
@@ -46,12 +45,10 @@ class BlogPostsController < ApplicationController
   def show
     @post = BlogPost.includes(:author, :category).publishing.find(params[:id])
     @page_title = "#{@post.title}｜ニュース"
-
+    @page_description = ApplicationController.helpers.sanitize(@post.intro, tags: [], attributes: [])
     @fb_ogp = {
-      title: @page_title ? "#{@page_title}｜#{@site_config.title}" : @site_config.title,
-      url: news_path(@post),
-      description: ApplicationController.helpers.sanitize(@post.intro, tags: [], attributes: [])
-    } unless @post.intro.blank?
+      url: news_path(@post)
+    }
   end
 
 private
