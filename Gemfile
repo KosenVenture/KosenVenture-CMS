@@ -15,6 +15,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'cancan'
 gem 'kaminari'
+gem 'mysql2'
 
 group :development do
   gem 'better_errors'
@@ -23,7 +24,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
 end
 

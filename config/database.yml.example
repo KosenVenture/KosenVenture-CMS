@@ -1,0 +1,29 @@
+development:
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  host: localhost
+  database: kvpcms_dev
+  username: root
+  password:
+
+test:
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  host: localhost
+  database: kvpcms_test
+  username: root
+  password:
+
+production:
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  host: localhost
+  database: kvpcms
+  username: root
+  password:

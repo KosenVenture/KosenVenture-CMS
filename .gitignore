@@ -19,3 +19,4 @@
 .svn
 /vendor/bundle
 /public/files/*
+config/database.yml
