@@ -25,6 +25,29 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+
+  # 高機能コンソール
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-coolline'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'awesome_print'
+
+  gem 'spork'
+  # MacでのFile System Event監視用
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-spork'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-migrate'
+  # Growl通知
+  #gem 'growl'
+  # Guardの通知センター通知(for OS X Mountain Linon)
+  gem 'terminal-notifier-guard'
 end
 
 group :assets do

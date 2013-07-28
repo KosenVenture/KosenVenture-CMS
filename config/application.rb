@@ -62,5 +62,11 @@ module KvpCms
     config.assets.version = '1.0'
 
     ADMIN_EMAIL = (Rails.env.production? ? 'ml@kosen-venture.com' : 'hayato.okumoto@kosen-venture.com')
+    
+    config.generators do |g|
+      g.test_framework :rspec, :fixture => true
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.template_engine :haml
+    end
   end
 end
