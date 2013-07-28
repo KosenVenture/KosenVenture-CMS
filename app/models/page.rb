@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Page < ActiveRecord::Base
+  # 最大の深さ
+  MAX_DEPTH = 10
   before_validation :set_path, :set_depth
 
   # Relation ship
@@ -57,8 +59,9 @@ class Page < ActiveRecord::Base
 
   # ページのパスを返す
   def trace_path
+    return nil if trace_depth.nil?
     # 親ページがある場合は再帰して取得
-    (self.parent ? self.parent.trace_path : '') + '/' + self.name
+    (self.parent ? self.parent.trace_path : '') + '/' + self.name.to_s
   end
 
   # ページの深さを返す
@@ -67,6 +70,10 @@ class Page < ActiveRecord::Base
     p = self
     while p = p.parent do
       count += 1
+      if count >= MAX_DEPTH
+        errors.add(:parent, "これ以上階層を深くできません。（#{MAX_DEPTH}以内）")
+        return nil
+      end
     end
 
     return count

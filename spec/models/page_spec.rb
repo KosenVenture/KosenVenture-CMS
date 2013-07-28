@@ -3,32 +3,29 @@
 require 'spec_helper'
 
 describe Page do
-  fixtures :pages, :page_categories, :users
+  it { should have_many :children }
+  it { should belong_to :parent }
+  it { should belong_to :author }
+  it { should validate_presence_of :name }
+
+  it { should allow_value('hoge0123456789').for(:name) }
+  it { should allow_value('hoge_huga').for(:name) }
+  it { should allow_value('HOGE-huga').for(:name) }
+  it { should_not allow_value('').for(:name) }
+  it { should_not allow_value('!#$%&`').for(:name) }
+  it { should_not allow_value('日本語名').for(:name) }
+
   let(:params) { nil }
-  subject { Page.new(params) }
+  subject { FactoryGirl.build(:page, params) }
 
   # 正常入力時
   context "with normal input" do
-    let(:params) {
-      { id: 5000, name: 'normalpage', published: true, category_id: 1, author_id: 1, parent_id: 1, path: '/about/normalpage', priority: 0.5 }
-    }
-
-    it "belongs to category" do
-      subject.category.should_not be_nil
-    end
-
-    it "belongs to author" do
-      subject.author.should_not be_nil
-    end
-
-    it "belongs to parent page" do
-      subject.parent.should_not be_nil
-    end
-
-    it "has many children pages" do
-      subject.children.should_not be_empty
-      subject.children.count.should == 3
-    end
+    let(:params) {{
+      name: 'hoge',
+      title: 'ほげ',
+      published: true,
+      parent: FactoryGirl.create(:page, name: 'huga', title: 'ふが')
+    }}
 
     it "is valid" do
       subject.valid?.should be_true
@@ -36,7 +33,24 @@ describe Page do
 
     describe "#trace_path" do
       it "returns true path" do
-        subject.trace_path.should == '/about/normalpage'
+        subject.trace_path.should == '/huga/hoge'
+      end
+    end
+    
+    describe "#trace_depth" do
+      it "returns true value" do
+        subject.trace_depth.should == 1
+      end
+    end
+    
+    describe "#tree_title" do
+      before do
+        subject.__send__(:set_depth)
+        subject.__send__(:set_path)
+      end
+
+      it "returns true value" do
+        subject.tree_title.should == "　■ほげ (/huga/hoge)"
       end
     end
   end
@@ -44,7 +58,7 @@ describe Page do
   # 親ページ無しの入力
   context "with no parent input" do
     let(:params) {
-      { name: 'no_parent', published: true, author_id: 1, priority: 0.5 }
+      { name: 'no_parent', title: 'ほげ', parent: nil }
     }
 
     describe "#trace_path" do
@@ -52,15 +66,33 @@ describe Page do
         subject.trace_path.should == '/no_parent'
       end
     end
+
+    describe "#trace_depth" do
+      it "returns true value" do
+        subject.trace_depth.should == 0
+      end
+    end
+
+    describe "#tree_title" do
+      before do
+        subject.__send__(:set_depth)
+        subject.__send__(:set_path)
+      end
+
+      it "returns true value" do
+        subject.tree_title.should == "■ほげ (/no_parent)"
+      end
+    end
   end
 
   # 自分自身が親ページの不正入力
   context "with parent is self input" do
-    subject do
-      page = Page.find(1)
-      page.parent_id = 1
-      page
+    before do
+      @page = FactoryGirl.create(:page)
+      @page.parent_id = @page.id
     end
+    subject { @page }
+    let(:params) {{ parent_id: @page.id }}
 
     describe "#parent_id" do
       it "has error" do
@@ -72,30 +104,7 @@ describe Page do
 
   # 全空欄入力時
   context "with nil input" do
-    let(:params) { { name: '' } }
-
-    describe "#name" do
-      it "has errors" do
-        subject.valid?.should be_false
-        subject.errors[:name].count.should_not == 0
-      end
-    end
-
-    describe "#category_id" do
-      # 空欄は許可
-      it "has no errors" do
-        subject.valid?
-        subject.errors[:category_id].count.should == 0
-      end
-    end
-
-    describe "#category" do
-      # 空欄は許可
-      # nilを返すこと
-      it "returns nil" do
-        subject.category.should be_nil
-      end
-    end
+    let(:params) { { parent_id: '' } }
 
     describe "#parent_id" do
       # 空欄は許可
@@ -106,12 +115,27 @@ describe Page do
     end
   end
 
-  # 日本語名の場合
-  context "with Japanese name input" do
-    let(:params) { { name: 'ほげ', published: true, category_id: 1, author_id: 1, priority: 0.5 } }
+  # 同じ階層で同名のページ名のとき
+  context "with the same name in the same level" do
+    before { FactoryGirl.create(:page, name: 'hoge') }
+    let(:params) {{ name: 'hoge' }}
 
     it "is not valid" do
       subject.valid?.should be_false
+    end
+  end
+
+  # 階層の深さのバリデーションテスト
+  context "with too deep nested" do
+    before do
+      Page::MAX_DEPTH.times do |i|
+        @page = FactoryGirl.create(:page, name: "nest_#{i}", parent: @page)
+      end
+    end
+    let(:params) {{ parent: @page }}
+
+    it "is not valid" do
+      expect(subject.valid?).to be_false
     end
   end
 end
