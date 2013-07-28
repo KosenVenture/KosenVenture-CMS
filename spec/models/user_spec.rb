@@ -3,34 +3,28 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_many(:pages) }
+  it { should validate_uniqueness_of :name }
+  it { should validate_presence_of :name }
+  it { should validate_presence_of :role }
+
   let(:params) { nil }
-  subject { User.new(params) }
+  subject { FactoryGirl.build(:user, params) }
 
   # 正常入力
   context "with normal input" do
-    let(:params) {
-      {
-        name: 'huga-hoge_ho09A',
-        real_name: 'hoge huga',
-        password: 'password_hogehoge',
-        password_confirmation: 'password_hogehoge'
-      }
-    }
+    let(:params) { {
+      password: 'hoge_pass',
+      password_confirmation: 'hoge_pass'
+    } }
 
     it "is valid" do
       subject.valid?.should be_true
       subject.password_digest.should_not be_empty
     end
-  end
 
-  # 全空欄入力
-  context "with all nil input" do
-    let(:params) { nil }
-
-    it "is not valid" do
-      subject.valid?.should be_false
-      subject.errors[:name].should_not be_empty
-      subject.errors[:password].should_not be_empty
+    it "should be authenticated" do
+      subject.authenticate('hoge_pass').should == subject
     end
   end
 
@@ -38,8 +32,6 @@ describe User do
   context "with password isn't equal to confirmation input" do
     let(:params) {
       {
-        name: 'huga',
-        real_name: 'hoge huga',
         password: 'password_hogehoge',
         password_confirmation: 'password_hugahuga'
       }
@@ -48,7 +40,7 @@ describe User do
     it "is not valid" do
       subject.valid?.should be_false
       # 確認入力フィールドにエラーあり
-      subject.errors[:password_confirmation].should_not be_empty
+      subject.errors[:password].should_not be_empty
     end
   end
 
@@ -58,8 +50,6 @@ describe User do
     context "when it creates" do
       let(:params) {
         {
-          name: 'huga',
-          real_name: 'hoge huga',
           password: nil,
           password_confirmation: nil
         }
@@ -72,7 +62,7 @@ describe User do
 
     # ユーザ更新時
     context "when it updates" do
-      subject { User.find(1) }
+      subject { FactoryGirl.create(:user) }
 
       it "is valid" do
         subject.attributes = { password: nil, password_confirmation: nil }
@@ -81,19 +71,51 @@ describe User do
     end
   end
 
-  # 日本語ユーザ名の場合
-  context "with Japanese name input" do
-    let(:params) {
-        {
-          name: 'ほげ',
-          real_name: 'hoge huga',
-          password: 'hogehoge',
-          password_confirmation: 'hogehoge'
-        }
-      }
+  context "with admin role" do
+    subject { FactoryGirl.build(:user, role: "admin") }
 
-    it "is not valid" do
-      subject.valid?.should be_false
+    describe "#admin?" do
+      it { expect(subject.admin?).to be_true }
+    end
+
+    describe "#manager?" do
+      it { expect(subject.manager?).to be_false }
+    end
+
+    describe "#blogger?" do
+      it { expect(subject.blogger?).to be_false }
+    end
+  end
+
+  context "with manager role" do
+    subject { FactoryGirl.build(:user, role: "manager") }
+
+    describe "#admin?" do
+      it { expect(subject.admin?).to be_false }
+    end
+
+    describe "#manager?" do
+      it { expect(subject.manager?).to be_true }
+    end
+
+    describe "#blogger?" do
+      it { expect(subject.blogger?).to be_false }
+    end
+  end
+
+  context "with blogger role" do
+    subject { FactoryGirl.build(:user, role: "blogger") }
+
+    describe "#admin?" do
+      it { expect(subject.admin?).to be_false }
+    end
+
+    describe "#manager?" do
+      it { expect(subject.manager?).to be_false }
+    end
+
+    describe "#blogger?" do
+      it { expect(subject.blogger?).to be_true }
     end
   end
 end
