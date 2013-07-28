@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::SiteConfigController do
+describe Admin::SiteConfigsController do
 
   describe "GET 'new'" do
     it "returns http success" do
