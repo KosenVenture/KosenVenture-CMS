@@ -68,5 +68,12 @@ module KvpCms
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
       g.template_engine :haml
     end
+
+    if Rails.env.test? && defined?(Spork) && Spork.using_spork?
+      initializer :after => :initialize_dependency_mechanism do
+        # Work around initializer in railties/lib/rails/application/bootstrap.rb
+        ActiveSupport::Dependencies.mechanism = :load
+      end
+    end
   end
 end
