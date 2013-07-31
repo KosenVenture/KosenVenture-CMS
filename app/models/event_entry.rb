@@ -111,7 +111,12 @@ class EventEntry
   validate :birthday_valid?
 
   def birthday
-    Date.new(self.birth_year.to_i, self.birth_month.to_i, self.birth_day.to_i)
+    set = [
+      self.birth_year.to_i,
+      self.birth_month.to_i,
+      self.birth_day.to_i
+    ]
+    Date.new(*set) if Date.valid_date?(*set)
   end
 
   def initialize(attributes = {})
