@@ -27,15 +27,15 @@ class BlogPost < ActiveRecord::Base
   scope :group_by_category,
     -> { select('blog_categories.name, blog_categories.title, COUNT(blog_posts.title) as cnt').group('category_id').joins(:category).order('cnt DESC') }
 
-    # 次の古い記事
-    def next
-      BlogPost.publishing.where("published_at < ?", self.published_at).first
-    end
+  # 次の古い記事
+  def next
+    BlogPost.publishing.where("published_at < ?", self.published_at).first
+  end
 
-    # 前の新しい記事
-    def prev
-      BlogPost.publishing.where("published_at > ?", self.published_at).last
-    end
+  # 前の新しい記事
+  def prev
+    BlogPost.publishing.where("published_at > ?", self.published_at).last
+  end
 
   # 月別の公開された記事
   def self.monthly

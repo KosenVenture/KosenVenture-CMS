@@ -1,41 +1,32 @@
 require 'spec_helper'
 
 describe BlogPost do
-  fixtures :users
+  it { should belong_to :author }
+  it { should belong_to :category }
+
   let(:params) { nil }
-  subject { BlogPost.new(params) }
+  subject { FactoryGirl.build(:blog_post, params) }
 
   # 正常入力時
   context "with normal input" do
-    let(:params) {
-      { id: 5000, name: 'normalpage', published: true, category_id: 1, author_id: 1, parent_id: 1, path: '/about/normalpage', priority: 0.5 }
-    }
+    let(:params) {{
+      title: "タイトル",
+      author: author,
+      category: category
+    }}
+    let(:author) { FactoryGirl.create(:user) }
+    let(:category) { FactoryGirl.create(:blog_category) }
 
     it "belongs to category" do
-      subject.category.should_not be_nil
+      expect(subject.category).to eq category
     end
 
     it "belongs to author" do
-      subject.author.should_not be_nil
-    end
-
-    it "belongs to parent page" do
-      subject.parent.should_not be_nil
-    end
-
-    it "has many children pages" do
-      subject.children.should_not be_empty
-      subject.children.count.should == 3
+      expect(subject.author).to eq author
     end
 
     it "is valid" do
-      subject.valid?.should be_true
-    end
-
-    describe "#trace_path" do
-      it "returns true path" do
-        subject.trace_path.should == '/about/normalpage'
-      end
+      expect(subject.valid?).to be_true
     end
   end
 end
