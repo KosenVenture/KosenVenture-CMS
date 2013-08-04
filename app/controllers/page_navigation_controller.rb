@@ -8,14 +8,16 @@ class PageNavigationController < ApplicationController
   def navigate
     @fb_ogp = { url: @page.path }
 
-    render inline: @page.body, layout: true
+    respond_to do |format|
+      format.html { render inline: @page.body, layout: true }
+    end
   end
 
   private
 
   # ページを探す
   def page_finder
-    if params[:path]
+    if params[:path].present?
       @page = Page.published.find_by_path!('/' + params[:path])
     else
       # 空のときはindexページを探す

@@ -4,6 +4,8 @@ FactoryGirl.define do
     title "ページタイトル"
     priority 0.5
     published true
+    published_at 1.days.ago
+    body { "Page #{name}" }
     
     author { FactoryGirl.create(:user) }
   end
