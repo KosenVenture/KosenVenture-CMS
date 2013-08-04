@@ -48,6 +48,9 @@ group :development, :test do
   #gem 'growl'
   # Guardの通知センター通知(for OS X Mountain Linon)
   gem 'terminal-notifier-guard'
+
+  # Code coverage
+  gem "simplecov", require: false
 end
 
 group :assets do
@@ -55,5 +58,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', platforms: :ruby
   gem 'uglifier', '>= 1.0.3'
+  #gem 'turbo-sprockets-rails3'
 end
 

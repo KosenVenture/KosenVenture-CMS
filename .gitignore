@@ -21,3 +21,4 @@
 /public/files/*
 config/database.yml
 *.swp
+/coverage
