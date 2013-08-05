@@ -38,8 +38,8 @@ $("#BtnBlogPreview").click () ->
 # Page本文HTMLエディタ
 if $("pre#body_editor").length != 0
 	editor = ace.edit("body_editor")
-	editor.setTheme("../ace/theme/twilight")
-	editor.getSession().setMode("../ace/mode/html")
+	editor.setTheme("ace/theme/twilight")
+	editor.getSession().setMode("ace/mode/html")
 	textarea = $('textarea[name="page[body]"]')
 	textarea.hide()
 	# 編集されたらもとのtextareaに反映する
