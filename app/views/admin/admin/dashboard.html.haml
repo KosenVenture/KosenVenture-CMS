@@ -1,6 +1,12 @@
 - content_for :title do
   ダッシュボード
 
-
 .page-header
   %h1 高専ベンチャー 管理ページ
+
+.row-fluid
+  .span6
+    %h2 最近の更新
+    %table.table.table-hover
+      - @activities.each do |activity|
+        = render_activity activity

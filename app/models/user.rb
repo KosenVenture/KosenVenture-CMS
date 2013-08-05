@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # public_activity
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_admin }
+
   has_secure_password
 
   ROLES = %w(admin manager blogger)

@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 class BlogCategory < ActiveRecord::Base
+  # public_activity
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_admin }
+
   # Relation ship
   has_many :posts,
     class_name: 'BlogPost',

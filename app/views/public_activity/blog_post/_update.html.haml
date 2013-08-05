@@ -1,0 +1,17 @@
+%tr
+  %td
+    %i.icon.icon-pencil
+  %td
+    %span
+      = activity.owner.real_name if activity.owner
+      さんが
+    - if model = activity.trackable
+      = model.class.model_name.human
+      「
+      = link_to "#{model.title}", news_path(model)
+      」を編集しました。
+    - else
+      = "編集した#{activity.trackable_type.constantize.model_name.human}は、その後削除されました。"
+  %td
+    %a.text-muted{data: { toggle: "tooltip" }, title: l(activity.created_at) }
+      = time_ago_in_words(activity.created_at) + '前'

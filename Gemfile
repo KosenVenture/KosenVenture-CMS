@@ -16,6 +16,7 @@ gem 'mini_magick'
 gem 'cancan'
 gem 'kaminari'
 gem 'mysql2'
+gem 'public_activity'
 
 group :development do
   gem 'better_errors'

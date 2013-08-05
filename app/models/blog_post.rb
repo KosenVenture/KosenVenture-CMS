@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 class BlogPost < ActiveRecord::Base
+  # public_activity
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_admin }
+
   # Relation ship
   belongs_to :author,
     class_name: 'User',

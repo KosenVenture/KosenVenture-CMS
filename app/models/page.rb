@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 class Page < ActiveRecord::Base
+  # public_activity
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_admin }
+
   # 最大の深さ
   MAX_DEPTH = 10
   before_validation :set_path, :set_depth

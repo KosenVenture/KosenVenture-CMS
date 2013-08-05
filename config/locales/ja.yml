@@ -28,7 +28,10 @@ ja:
   activerecord:
     models:
       page: 'ページ'
-      user: '管理ユーザ'
+      user: 'ユーザ'
+      blog_post: '記事'
+      blog_category: '記事カテゴリ'
+      site_config: 'サイト設定'
     attributes:
       page:
         name: 'ページ名(URL)'

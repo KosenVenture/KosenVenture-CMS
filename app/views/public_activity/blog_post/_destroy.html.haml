@@ -1,0 +1,11 @@
+%tr
+  %td
+    %i.icon.icon-trash
+  %td
+    %span
+      = activity.owner.real_name if activity.owner
+      さんが
+      = "#{activity.trackable_type.constantize.model_name.human}を削除しました。"
+  %td
+    %a.text-muted{data: { toggle: "tooltip" }, title: l(activity.created_at) }
+      = time_ago_in_words(activity.created_at) + '前'
