@@ -7,6 +7,5 @@ class CreateSiteConfigs < ActiveRecord::Migration
 
       t.timestamps
     end
-    SiteConfig.create(title: "", description: "", keywords: "")
   end
 end
