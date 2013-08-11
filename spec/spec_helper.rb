@@ -71,6 +71,8 @@ Spork.prefork do
     ActiveSupport::Dependencies.clear
     ActiveRecord::Base.instantiate_observers
   end
+
+  PublicActivity.enabled = false
 end
 
 Spork.each_run do
