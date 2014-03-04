@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.17'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.0.1'
 gem 'haml-rails'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'rails-i18n'
 gem 'twitter-bootstrap-rails'
 gem 'strong_parameters'
