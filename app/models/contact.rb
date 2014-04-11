@@ -6,7 +6,7 @@ class Contact
   extend ActiveModel::Naming
 
   # フィールド
-  attr_accessor :name_kanji, :name_kana, :email, :affiliation, :body
+  attr_accessor :name_kanji, :name_kana, :email, :affiliation, :body, :accept
 
   # 必須項目
   validates :name_kanji, :name_kana, :email,
@@ -21,6 +21,8 @@ class Contact
     length: { maximum: 100 }
   validates :body,
     length: { minimum: 10, maximum: 3000 }
+  validates :accept,
+    acceptance: true
 
   # メールアドレスの不正な形式をはじく
   validate :email_valid?

@@ -48,5 +48,14 @@
       = f.text_area :body, class: 'input-xxlarge', rows: 5
       %span.help-inline 3000文字以内
 
+  %div{class: "control-group #{'error' unless @contact.errors[:accept].blank?}"}
+    %label.control-label
+      個人情報利用について
+      %span.label.label-important 必須
+    .controls
+      %label{for: 'contact_accept'}
+        = f.check_box :accept
+        入力した個人情報を問い合わせ等の連絡を目的として、利用されることに同意します。
+
   .form-actions
     = f.submit '送信', class: 'btn btn-primary'

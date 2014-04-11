@@ -32,6 +32,6 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:name_kanji, :name_kana, :email, :affiliation, :body)
+    params.require(:contact).permit(:name_kanji, :name_kana, :email, :affiliation, :body, :accept)
   end
 end
